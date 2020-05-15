@@ -1,0 +1,2 @@
+rootProject.name='Proyecto TFG REAL'
+include ':app'
