@@ -1,8 +1,10 @@
 package com.example.proyectotfgreal.Apartado;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,18 +28,19 @@ import java.util.List;
 
 public class Adaptador extends RecyclerView.Adapter<Adaptador.PersonViewHolder> {
     private ArrayList<Entidad> items;
+    MainActivity mainActivity;
     public static class PersonViewHolder extends RecyclerView.ViewHolder {
         // Campos respectivos de un item
-        public CardView cardView;
-        public ImageView imgFoto;
-        public TextView lblModelo;
+        private CardView cardView;
+        private ImageView imgFoto;
+        private TextView lblModelo;
+        public Context context;
 
-
-        public PersonViewHolder(View v) {
+        private PersonViewHolder(View v) {
             super(v);
-            cardView = (CardView) v.findViewById(R.id.cardview1);
-            imgFoto = (ImageView) v.findViewById(R.id.imgFoto1);
-            lblModelo = (TextView) v.findViewById(R.id.txtView);
+            cardView =  v.findViewById(R.id.cardview1);
+            imgFoto = v.findViewById(R.id.imgFoto1);
+            lblModelo =  v.findViewById(R.id.txtView);
 
         }
     }
@@ -51,7 +54,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.PersonViewHolder> 
        }
 
 
-    public Adaptador(ArrayList<Entidad> items) {
+    private Adaptador(ArrayList<Entidad> items) {
         this.items = items;
     }
 
@@ -67,7 +70,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.PersonViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PersonViewHolder viewHolder,final int i) {
+    public void onBindViewHolder(@NonNull final PersonViewHolder viewHolder, final int i) {
         //viewHolder.imagen.setImageResource(items.get(i).getImagen());
         Picasso.with(viewHolder.imgFoto.getContext())
                 .load(items.get(i).getUrlImagen()).resize(370,230).into(viewHolder.imgFoto);
@@ -75,9 +78,16 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.PersonViewHolder> 
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(view.getContext(), "Clicaste"+items.get(i).getTitulo(),Toast.LENGTH_SHORT).show();
                 Bundle bundle = new Bundle();
                 bundle.putString("curImagen", items.get(i).getUrlImagen());
                 bundle.putString("curNombre", items.get(i).getTitulo());
+                if (items.get(i).getTitulo().equals("Minicompacto")){
+                    Toast.makeText(view.getContext(), "HOLIXXX "+items.get(i).getTitulo(),Toast.LENGTH_SHORT).show();
+                    Intent iconIntent = new Intent (view.getContext(),MainActivity.class);
+                    view.getContext().startActivity(iconIntent);
+                }
+
                /* Intent iconIntent = new Intent(view.getContext(), BioActivity.class);
                 iconIntent.putExtras(bundle);
                 view.getContext().startActivity(iconIntent);*/
@@ -87,51 +97,4 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.PersonViewHolder> 
 
     }
 }
- /* private Context context;
-  private ArrayList<Entidad> listItems;
-  private String urlCosa;
 
-    public Adaptador(Context context, ArrayList<Entidad> listItems) {
-        this.context = context;
-        this.listItems = listItems;
-    }
-
-    @Override
-    public int getCount() {
-        return listItems.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return listItems.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return 0;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-       Entidad Item = (Entidad) getItem(position);
-
-       convertView= LayoutInflater.from(context).inflate(R.layout.item,null);
-        ImageView imgFoto = (ImageView) convertView.findViewById(R.id.imgFoto);
-        try {
-            String EDteamImage = Item.getUrlImagen();
-            Glide.with(context)
-                    .load(EDteamImage)
-                    .into(imgFoto);
-        }
-        catch(NullPointerException e){
-            Toast.makeText(context,"NULL POINT",Toast.LENGTH_LONG).show();
-        }
-        TextView Titulo = (TextView) convertView.findViewById(R.id.Titulo);
-        //TextView Contenido = (TextView) convertView.findViewById(R.id.Contenido);
-
-        imgFoto.setImageResource(Item.getImgFoto());
-        Titulo.setText(Item.getTitulo());
-        //Contenido.setText((Item.getTitulo()));
-        return convertView;
-    }
-}*/
