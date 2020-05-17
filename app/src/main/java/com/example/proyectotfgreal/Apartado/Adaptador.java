@@ -70,7 +70,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.PersonViewHolder> 
     public void onBindViewHolder(@NonNull PersonViewHolder viewHolder,final int i) {
         //viewHolder.imagen.setImageResource(items.get(i).getImagen());
         Picasso.with(viewHolder.imgFoto.getContext())
-                .load(items.get(i).getUrlImagen()).into(viewHolder.imgFoto);
+                .load(items.get(i).getUrlImagen()).resize(370,230).into(viewHolder.imgFoto);
         viewHolder.lblModelo.setText(items.get(i).getTitulo());
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
