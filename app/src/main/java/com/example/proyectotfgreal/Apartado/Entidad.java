@@ -5,8 +5,8 @@ public class Entidad {
     private String titulo;
     private String urlImagen;
 
-    public Entidad(int imgFoto,String titulo, String urlImg){
-        this.imgFoto=imgFoto;
+    public Entidad(String titulo, String urlImg){
+       // this.imgFoto=imgFoto;
         this.titulo=titulo;
         urlImagen=urlImg;
     }

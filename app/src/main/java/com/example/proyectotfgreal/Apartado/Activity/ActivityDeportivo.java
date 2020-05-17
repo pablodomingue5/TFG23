@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.example.proyectotfgreal.Apartado.Adaptador.Adaptador;
+import com.example.proyectotfgreal.Apartado.Adaptador;
 import com.example.proyectotfgreal.Apartado.Entidad;
 import com.example.proyectotfgreal.R;
 
 import java.util.ArrayList;
-
+/*
 public class ActivityDeportivo extends AppCompatActivity {
     private ListView lvItems;
     private Adaptador adaptador;
@@ -40,3 +40,4 @@ public class ActivityDeportivo extends AppCompatActivity {
         return listItems;
     }
 }
+*/

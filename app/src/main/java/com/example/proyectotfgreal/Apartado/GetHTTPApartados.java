@@ -1,7 +1,11 @@
 package com.example.proyectotfgreal.Apartado;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,14 +21,27 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GetHTTPApartados  extends AsyncTask<Void, Void,String> {
+    public ArrayList<Entidad> httpList= new ArrayList<>();
+    public RecyclerView httpRecycler;
+    public RecyclerView.Adapter httpAdapter;
+    public Context httpContext;
+    ProgressDialog progressDialog;
+    ArrayList<EntidadApartado> arrayEntidadApartado = new ArrayList<>();
+    public GetHTTPApartados(ArrayList<Entidad> httpList, RecyclerView httpRecycler, RecyclerView.Adapter httpAdapter, Context httpContext) {
+        this.httpList = httpList;
+        this.httpRecycler = httpRecycler;
+        this.httpAdapter = httpAdapter;
+        this.httpContext = httpContext;
+    }
     @Override
     protected String doInBackground(Void... voids) {
         String result = null;
         try {
-            String[] parametros = {"idModelo", "3"};
-            String wsURL = "http://192.168.1.115/TFG/adacc.php?" + parametros[0] + "=" + parametros[1];
+            String[] parametros = {"idPrueba"};
+            String wsURL = "http://192.168.1.37/TFG/adacc.php?" + parametros[0];
             URI url = new URI(wsURL);
             // Create connection
             HttpURLConnection myConnection = (HttpURLConnection)
@@ -34,20 +51,26 @@ public class GetHTTPApartados  extends AsyncTask<Void, Void,String> {
             InputStream in = new BufferedInputStream(myConnection.getInputStream());
             result = inputStreamToString(in);
             Log.d("DoInBackground", result);
-            metodoDefinitivoApartados(result);
-
         } catch (Exception e) {
             Log.e("Erro0r", "Erro0r cacth IP 191.168.15");
             Log.d("Erro0r", "Erro0r cacth IP 191.168.15 " + e);
         }
         return result;
     }
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        Log.v("INICIO","INICIANDO");
+        progressDialog = ProgressDialog.show(httpContext, "descargando", "Por favor, espera");
+    }
 
-    private void metodoDefinitivoApartados(String s) {
+
+    public ArrayList<EntidadApartado> metodoDefinitivoApartados(String s) {
+        ArrayList<EntidadApartado> registrosDefinitivos=new ArrayList<>();
         try {
             ///Error Sucede aqui salta a error cach json
             JSONObject jsonObject = new JSONObject(URLDecoder.decode(s, "UTF-8" ));
-            JSONArray jsonArray = jsonObject.getJSONArray("apartados");
+            JSONArray jsonArray = jsonObject.getJSONArray("coches");
             // JSONObject jsonObject = new JSONObject(responseStrBuilder.toString());
             Log.d("recogiendoRegistros", "Primer objeto del try");
             Log.d("recogiendoRegistros", "Array del try");
@@ -57,7 +80,7 @@ public class GetHTTPApartados  extends AsyncTask<Void, Void,String> {
             for (int it = 0; it < jsonArray.length(); it++) {
                 String nombreModeloRecogido = jsonArray.getJSONObject(it).getString("Nombre");
                 Log.d("recogiendoRegistros", "recoge nombreApartado " + nombreModeloRecogido + "");
-                String idApartadoRecogido = jsonArray.getJSONObject(it).getString("id");
+                String idApartadoRecogido = jsonArray.getJSONObject(it).getString("idApartado");
                 Log.d("recogiendoRegistros", "recoge idApartado " + idApartadoRecogido + "");
                 String imagenRecibida = jsonArray.getJSONObject(it).getString("Imagen");
                 EntidadApartado recibido = new EntidadApartado(nombreModeloRecogido, idApartadoRecogido,imagenRecibida);
@@ -70,7 +93,8 @@ public class GetHTTPApartados  extends AsyncTask<Void, Void,String> {
             //Si esta no contiene subApartados en su array tirando para la siguiente donde hace una consulta tirando del identificadorApartado
             //Si contiene recoges la lista de subapartados y la muestras como hicimoss con apartado
             //De esta forma podemos hasta parametrizar los switch asi que no hace falta definirlos :)
-           ArrayList<EntidadApartado> registrosDefinitivos=metodoOrdenadorDefinitivoFinalDestruccion(registroIniciales);
+             registrosDefinitivos=metodoOrdenadorDefinitivoFinalDestruccion(registroIniciales);
+
 
         } catch (JSONException e) {
             Log.d("recogiendoRegistros",e.toString());
@@ -78,6 +102,7 @@ public class GetHTTPApartados  extends AsyncTask<Void, Void,String> {
             Log.d("recogiendoRegistros",e.toString());
             e.printStackTrace();
         }
+        return registrosDefinitivos;
     }
 
     //Me acabo de dar cuenta de un posible bug este ordenador solo funcionara bien si los registros estan alfabeticamente ordenado,
@@ -114,58 +139,63 @@ public class GetHTTPApartados  extends AsyncTask<Void, Void,String> {
     //Todocaminos-Todotorreno
     //Todocaminos-SUV
     //OSEA QUE PODEMOS O TENER CUIDADO CON LA BASE DE DATOS Y ANUNCIARLO COMO BUG EN CAJA NEGRA O EL ORDEN SER MUY CUTRE
-    private ArrayList<EntidadApartado> metodoOrdenadorDefinitivoFinalDestruccion(ArrayList<EntidadApartado> registrosDefinitivos) {
+    public ArrayList<EntidadApartado> metodoOrdenadorDefinitivoFinalDestruccion(ArrayList<EntidadApartado> registrosDefinitivos) {
         //Primero recogemos el array a ordenar
         ArrayList<EntidadApartado> resutOrdenado=registrosDefinitivos;
         //Este array contendra una lista de los nombres apartados utilizados
-        ArrayList<String>nombreApartado=new ArrayList<String> ();;
+        ArrayList<String>nombresApartados=new ArrayList<String> ();;
         Boolean seRepitio=false;
-        //Nos aseguramos de cuantos objetos Apartado tiene
-        int numeroResult=resutOrdenado.size();
-        //hacemos un for para ver cada registro y consecuentemente ordenarlo
-        for(int i=0; i<numeroResult;i++){
-            //Recogemos el nombre que vamos a comprobar o añadir
-            String nombreRecibido=registrosDefinitivos.get(i).getNombreApartado();
-            //Buscamos si se repite
-            for (String a:nombreApartado ) {
-                //Solo nos interesa comprobar si este nombre se encuentra en la lista
-                //y para eso solo comprobaremos si se repitio al final (Se que continuaría si se probase pero me da pereza pensar mas)
-                if(a==nombreRecibido){
-                    //Recogemos los registros del subApartado del Apartado segundo  que coincide en nombre()
-                    String numeroIdentificadorAsignadoSub = resutOrdenado.get(i).getListaSub().get(0).getNumeroIdentificadorSubApartado();
-                    String nombreSubApartado = resutOrdenado.get(i).getListaSub().get(0).getNombreSubApartado();
-                    String imagen = resutOrdenado.get(i).getListaSub().get(0).getImagenSubApartado();
-                    //Creamos un subApartado con los datos que recogimos del unico SubApartado que tiene este apartado repetido
-                    EntidadSubApartado subApartadoAñadir = new EntidadSubApartado(nombreSubApartado,numeroIdentificadorAsignadoSub,imagen);
-                    //Eliminamos el registro repetido
-                    registrosDefinitivos.remove(i);
-                    //tiramos para el anterior registro que probablemente sea el original
-                    --i;
-                    //Recogemos el objeto entidad
-                    EntidadApartado apartadoArellenar =registrosDefinitivos.get(i);
-                    //Le añadimos a la lista del Apartado creado el subApartado
-                    apartadoArellenar.addSubApartadoLista(subApartadoAñadir);
-                    //eliminamos el registro incompleto
-                    registrosDefinitivos.remove(i);
-                    //Añadimos el registro creado que esta completo
-                    registrosDefinitivos.add(apartadoArellenar);
-                    //Confirmamos su repeticion para no añadir este nombre
+        boolean termino=false;
+        String nombreSubApartado, identificadorSubApartado, imagenSubApartado;
+        EntidadSubApartado subApartadoCreado;
+        int contadorActual=0;
+        do {
+            String nombreRecibido=resutOrdenado.get(contadorActual).getNombreApartado();
+            for (String registro: nombresApartados) {
+                if(nombreRecibido.equals(registro)) {
+                    nombreSubApartado = resutOrdenado.get(contadorActual).getListaSub().get(0).getNombreSubApartado();
+                    identificadorSubApartado = resutOrdenado.get(contadorActual).getListaSub().get(0).getNumeroIdentificadorSubApartado();
+                    imagenSubApartado = resutOrdenado.get(contadorActual).getListaSub().get(0).getImagenSubApartado();
+                    subApartadoCreado = new EntidadSubApartado(nombreSubApartado,identificadorSubApartado,imagenSubApartado);
+                    resutOrdenado.remove(contadorActual);
+                    resutOrdenado.get(contadorActual-1).addSubApartadoLista(subApartadoCreado);
                     seRepitio=true;
+                    try{
+                        resutOrdenado.get(contadorActual+1);
+                    }catch(Exception e){
+                        termino=true;
+                    }
+                    //Revisar para posibles errores futuros con nuevos registros
                 }
             }
-            if(seRepitio==false){
-                //En caso que en to-do el ciclo no llegase a entrar en el if simplemente añadiremos el nombre a la lista
-                nombreApartado.add(nombreRecibido);
-                //y como la variable sigue como el origen  podemos dejarla igual
-            }else {
-                //Aqui presupongo que ha entrado con lo que reseteamos el boolean
+            if(seRepitio==true) {
                 seRepitio=false;
+            }else{
+                nombresApartados.add(nombreRecibido);
+                contadorActual++;
             }
-        }
+        }while(termino==false);
+        Log.d("MetodoOrdenador","Termino");
         return resutOrdenado;
     }
+    @Override
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
+        progressDialog.dismiss();
+        Log.d("OnPostExecute", "Comienza el try");
+        arrayEntidadApartado = metodoDefinitivoApartados(s);
+        for(int it=0;it<arrayEntidadApartado.size();it++){
+            Log.d("RecogiendoRegistros",arrayEntidadApartado.get(it).getNombreApartado());
+            EntidadApartado apartadoRecibido =arrayEntidadApartado.get(it) ;
+            Entidad x = new Entidad(apartadoRecibido.getNombreApartado(),apartadoRecibido.getImagen());
+            this.httpList.add(x);
+        }
+        Log.d("RecogiendoRegistros","Lista"+httpList.get(0).getTitulo());
+        httpAdapter = new Adaptador(this.httpList);
+        httpRecycler.setAdapter(this.httpAdapter);
+    }
 
-    private String inputStreamToString(InputStream inputStream) {
+    public String inputStreamToString(InputStream inputStream) {
         String rLine;
         Log.d("InputStream","Comienzo metodo");
         StringBuilder answer = new StringBuilder();
