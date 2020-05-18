@@ -21,10 +21,10 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URLDecoder;
 import java.util.ArrayList;
-import java.util.List;
 
 public class GetHTTPApartados  extends AsyncTask<Void, Void,String> {
     public ArrayList<Entidad> httpList= new ArrayList<>();
+    public ArrayList<EntidadSubApartado> listaFinal;
     public RecyclerView httpRecycler;
     public RecyclerView.Adapter httpAdapter;
     public Context httpContext;
@@ -188,10 +188,12 @@ public class GetHTTPApartados  extends AsyncTask<Void, Void,String> {
             Log.d("RecogiendoRegistros",arrayEntidadApartado.get(it).getNombreApartado());
             EntidadApartado apartadoRecibido =arrayEntidadApartado.get(it) ;
             Entidad x = new Entidad(apartadoRecibido.getNombreApartado(),apartadoRecibido.getImagen());
+
             this.httpList.add(x);
         }
         Log.d("RecogiendoRegistros","Lista"+httpList.get(0).getTitulo());
         httpAdapter = new Adaptador(this.httpList);
+        httpAdapter.entidadRecibida;
         httpRecycler.setAdapter(this.httpAdapter);
     }
 
