@@ -1,4 +1,4 @@
-package com.example.proyectotfgreal.Apartado.Activity;
+package com.example.proyectotfgreal.Apartado;
 
 import android.app.Activity;
 import android.os.Bundle;

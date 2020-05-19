@@ -41,7 +41,7 @@ public class GetHTTPApartados  extends AsyncTask<Void, Void,String> {
         String result = null;
         try {
             String[] parametros = {"idPrueba"};
-            String wsURL = "http://192.168.1.115/TFG/adacc.php?" + parametros[0];
+            String wsURL = "http://192.168.1.37/TFG/adacc.php?" + parametros[0];
             URI url = new URI(wsURL);
             // Create connection
             HttpURLConnection myConnection = (HttpURLConnection)
