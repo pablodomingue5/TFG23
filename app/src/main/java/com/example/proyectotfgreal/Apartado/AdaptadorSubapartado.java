@@ -60,8 +60,7 @@ public class AdaptadorSubapartado extends RecyclerView.Adapter<AdaptadorSubapart
     @NonNull
     @Override
     public AdaptadorSubapartado.PersonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.cardview, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview, parent, false);
         return new AdaptadorSubapartado.PersonViewHolder(v);
     }
 

@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<Entidad> entidad=new ArrayList() ;
     private ListView lvItems;
     private Adaptador adaptador;
-    public ImageView imgView1;
     private RecyclerView recycler;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager iManager;

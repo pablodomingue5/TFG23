@@ -41,7 +41,7 @@ public class GetHTTPApartados  extends AsyncTask<Void, Void,String> {
         String result = null;
         try {
             String[] parametros = {"idPrueba"};
-            String wsURL = "http://192.168.1.37/TFG/adacc.php?" + parametros[0];
+            String wsURL = "http://192.168.1.115/TFG/adacc.php?" + parametros[0];
             URI url = new URI(wsURL);
             // Create connection
             HttpURLConnection myConnection = (HttpURLConnection)
@@ -187,13 +187,11 @@ public class GetHTTPApartados  extends AsyncTask<Void, Void,String> {
         for(int it=0;it<arrayEntidadApartado.size();it++){
             Log.d("RecogiendoRegistros",arrayEntidadApartado.get(it).getNombreApartado());
             EntidadApartado apartadoRecibido =arrayEntidadApartado.get(it) ;
-            Entidad x = new Entidad(apartadoRecibido.getNombreApartado(),apartadoRecibido.getImagen());
-
+            Entidad x = new Entidad(apartadoRecibido.getNombreApartado(),apartadoRecibido.getImagen(),arrayEntidadApartado);
             this.httpList.add(x);
         }
         Log.d("RecogiendoRegistros","Lista"+httpList.get(0).getTitulo());
         httpAdapter = new Adaptador(this.httpList);
-        httpAdapter.entidadRecibida;
         httpRecycler.setAdapter(this.httpAdapter);
     }
 

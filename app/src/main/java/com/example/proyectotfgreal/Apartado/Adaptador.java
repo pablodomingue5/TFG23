@@ -30,25 +30,11 @@ import java.util.List;
 
 public class Adaptador extends RecyclerView.Adapter<Adaptador.PersonViewHolder> {
     private ArrayList<Entidad> items;
-    private ArrayList<EntidadSubApartado> items1;
-    public ArrayList <EntidadApartado> entidadRecibida;
-
-    @Override
-    public void setEntidadRecibida(ArrayList<EntidadApartado> entidadRecibida) {
-        this.entidadRecibida = entidadRecibida;
-    }
-    public ArrayList<EntidadApartado> getEntidadRecibida(){
-        return entidadRecibida;
-    }
-    MainActivity mainActivity;
     public static class PersonViewHolder extends RecyclerView.ViewHolder {
         // Campos respectivos de un item
         private CardView cardView;
         private ImageView imgFoto;
         private TextView lblModelo;
-        public Context context;
-
-
 
         private PersonViewHolder(View v) {
             super(v);
@@ -86,7 +72,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.PersonViewHolder> 
     @Override
     public void onBindViewHolder (@NonNull final PersonViewHolder viewHolder, final int i) {
         //viewHolder.imagen.setImageResource(items.get(i).getImagen());
-        final ArrayList<EntidadApartado>todosApartados = entidadRecibida;
+        final ArrayList<EntidadApartado>todosApartados = items.get(i).getArrayEntidadApartado();
 
         Picasso.with(viewHolder.imgFoto.getContext())
                 .load(items.get(i).getUrlImagen()).resize(370,230).into(viewHolder.imgFoto);
@@ -109,13 +95,16 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.PersonViewHolder> 
                             ArrayList<String> imagenes=new ArrayList<>();
                             for (EntidadSubApartado subApartado: subApartadosDelSeleccionado) {
                                 nombresApartados.add(subApartado.getNombreSubApartado());
+                                Log.d("AdaptadorListener","El nombre del subApartado en la lista es "+subApartado.getNombreSubApartado());
                                 identificadores.add(subApartado.getNumeroIdentificadorSubApartado());
                                 imagenes.add(subApartado.getImagenSubApartado());
                             }
                             Intent iconIntent = new Intent (view.getContext(), Activity1.class);
-                            iconIntent.putStringArrayListExtra("SubApartado_Nombre",nombresApartados);
-                            iconIntent.putStringArrayListExtra("SubApartado_Identificador",identificadores);
-                            iconIntent.putStringArrayListExtra("SubApartado_Imagenes",imagenes);
+                            Log.d("AdaptadorListener","Llego a llenar");
+                            iconIntent.putStringArrayListExtra("SubApartadoNombre",nombresApartados);
+                            Log.d("AdaptadorListener","Introducio nombres");
+                            iconIntent.putStringArrayListExtra("SubApartadoIdentificador",identificadores);
+                            iconIntent.putStringArrayListExtra("SubApartadoImagenes",imagenes);
                             view.getContext().startActivity(iconIntent);
 
 

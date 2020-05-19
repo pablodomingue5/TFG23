@@ -42,19 +42,6 @@ public class GetHttpClassSubprincipal extends AsyncTask<Void,Void,String> {
         protected String doInBackground(Void... voids) {
             String result = null;
 
-            try {
-                String[] parametros = {"idApartadoSeleccionado", "1"};
-                String wsURL = "http://192.168.1.37/TFG/adacc.php?" + parametros[0] + "=" + parametros[1];
-                URL url = new URL(wsURL);
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-                result = inputStreamToString(in);
-                Log.d("DoInBackground", result);
-
-            } catch (Exception e) {
-                Log.e("Erro0r", "Erro0r cacth IP 191.168.1");
-                e.printStackTrace();
-            }
             return result;
         }
         @Override

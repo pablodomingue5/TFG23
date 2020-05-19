@@ -1,9 +1,9 @@
 package com.example.proyectotfgreal.Apartado;
 
 public class EntidadSubApartado {
-    String nombreSubApartado;
-    String numeroIdentificadorSubApartado;
-    String imagen;
+   private String nombreSubApartado;
+    private String numeroIdentificadorSubApartado;
+    private String imagen;
     public String getNombreSubApartado() {
         return nombreSubApartado;
     }
@@ -20,7 +20,7 @@ public class EntidadSubApartado {
         return imagen;
     }
 
-    EntidadSubApartado(String s, String i, String imagenR){
+    public EntidadSubApartado(String s, String i, String imagenR){
         nombreSubApartado=s;
         numeroIdentificadorSubApartado=i;
         imagen=imagenR;
