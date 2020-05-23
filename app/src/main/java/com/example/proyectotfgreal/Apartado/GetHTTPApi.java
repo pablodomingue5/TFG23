@@ -2,10 +2,13 @@ package com.example.proyectotfgreal.Apartado;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.proyectotfgreal.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,20 +32,24 @@ public class GetHTTPApi extends AsyncTask<Void,Void,String> {
     private RecyclerView.Adapter httpAdapter;
     private Context httpContext;
     ProgressDialog progressDialog;
+    String numeroApartado;
 
-    public GetHTTPApi(List<Entidad> httpList, RecyclerView httpRecycler, RecyclerView.Adapter httpAdapter, Context httpContext) {
+    public GetHTTPApi(List<Entidad> httpList, RecyclerView httpRecycler, RecyclerView.Adapter httpAdapter, String numeroRecibido, Context httpContext) {
         this.httpList = httpList;
         this.httpRecycler = httpRecycler;
         this.httpAdapter = httpAdapter;
         this.httpContext = httpContext;
+        numeroApartado=numeroRecibido;
     }
     @Override
     protected String doInBackground(Void... voids) {
         String result = null;
 
         try {
-            String[] parametros = {"idApartadoSeleccionado", "1"};
-            String wsURL = "http://192.168.1.37/TFG/adacc.php?" + parametros[0] + "=" + parametros[1];
+            String[] parametros = {"idApartadoSeleccionado", numeroApartado};
+            String ip = httpContext.getString(R.string.ip);
+
+            String wsURL = "http://"+ip+"/TFG/adacc.php?" + parametros[0] + "=" + parametros[1];
             URL url = new URL(wsURL);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
@@ -80,9 +87,6 @@ public class GetHTTPApi extends AsyncTask<Void,Void,String> {
             Log.d("OnPostExecute", jsonArray+"");
             for (int it = 0; it < jsonArray.length(); it++) {
                 Log.d("OnPostExecute", "Entro en for contador:"+it+"de"+jsonArray.length());
-
-                //String idModelo = jsonArray.getJSONObject(it).getString("idModelo");
-                // Log.d("OnPostExecute", "recoge idModelo"+idModelo+"");
                 String nombreModelo = jsonArray.getJSONObject(it).getString("nombreModelo");
                 String urlModelo = jsonArray.getJSONObject(it).getString("urlModelo");
                 String nombreSerie = jsonArray.getJSONObject(it).getString("nombreSerie");
@@ -90,8 +94,6 @@ public class GetHTTPApi extends AsyncTask<Void,Void,String> {
                 Entidad x = new Entidad(nombreSerie+" "+nombreModelo, urlModelo);
                 Log.d("OnPostExecute", "Objeto Recibido:"+x.getTitulo()+"-"+ x.getUrlImagen());
                 this.httpList.add(x);
-
-
             }
             httpAdapter = new Adaptador((ArrayList<Entidad>) this.httpList);
             httpRecycler.setAdapter(this.httpAdapter);

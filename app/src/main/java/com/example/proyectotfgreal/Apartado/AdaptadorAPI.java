@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.proyectotfgreal.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdaptadorAPI extends RecyclerView.Adapter<AdaptadorAPI.PersonViewHolder>  {
@@ -62,6 +63,10 @@ public class AdaptadorAPI extends RecyclerView.Adapter<AdaptadorAPI.PersonViewHo
 
     public void onBindViewHolder(PersonViewHolder viewHolder, final int i) {
         //viewHolder.imagen.setImageResource(items.get(i).getImagen());
+        items.get(i).getTitulo();
+
+
+
         Picasso.with(viewHolder.imgFoto.getContext())
                 .load(items.get(i).getUrlImagen()).into(viewHolder.imgFoto);
         viewHolder.lblModelo.setText(items.get(i).getTitulo());
@@ -71,6 +76,7 @@ public class AdaptadorAPI extends RecyclerView.Adapter<AdaptadorAPI.PersonViewHo
                 Bundle bundle = new Bundle();
                 bundle.putString("curImagen", items.get(i).getUrlImagen());
                 bundle.putString("curNombre", items.get(i).getTitulo());
+
                 // Intent iconIntent = new Intent(view.getContext(), BioActivity.class);
                 //  iconIntent.putExtras(bundle);
                 //  view.getContext().startActivity(iconIntent);

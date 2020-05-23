@@ -66,7 +66,6 @@ public class AdaptadorSubapartado extends RecyclerView.Adapter<AdaptadorSubapart
 
     @Override
     public void onBindViewHolder(@NonNull final AdaptadorSubapartado.PersonViewHolder viewHolder, final int i) {
-        //viewHolder.imagen.setImageResource(items.get(i).getImagen());
         Picasso.with(viewHolder.imgFoto.getContext())
                 .load(items.get(i).getImagenSubApartado()).resize(370,230).into(viewHolder.imgFoto);
         viewHolder.lblModelo.setText(items.get(i).
@@ -74,23 +73,15 @@ public class AdaptadorSubapartado extends RecyclerView.Adapter<AdaptadorSubapart
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String nombreSubApartadoElegido=items.get(i).getNombreSubApartado();
+                String numeroElegido = items.get(i).getNumeroIdentificadorSubApartado();
                 Toast.makeText(view.getContext(), "Clicaste"+items.get(i).getNombreSubApartado(),Toast.LENGTH_SHORT).show();
-                Bundle bundle = new Bundle();
-                bundle.putString("curImagen", items.get(i).getNumeroIdentificadorSubApartado());
-                bundle.putString("curNombre", items.get(i).getNombreSubApartado());
-                if (items.get(i).getNombreSubApartado().equals("Minicompacto")){
-                    Toast.makeText(view.getContext(), "HOLIXXX "+items.get(i).getNombreSubApartado(),Toast.LENGTH_SHORT).show();
-                    Intent iconIntent = new Intent (view.getContext(),MainActivity.class);
-                    view.getContext().startActivity(iconIntent);
-                }
-
-               /* Intent iconIntent = new Intent(view.getContext(), BioActivity.class);
-                iconIntent.putExtras(bundle);
-                view.getContext().startActivity(iconIntent);*/
+                Intent iconIntent = new Intent (view.getContext(), ActivityAPI.class);
+                iconIntent.putExtra("nomnbreApartadoSeleccionado",nombreSubApartadoElegido);
+                iconIntent.putExtra("numeroIdentificadorApartado",numeroElegido);
+                view.getContext().startActivity(iconIntent);
             }
         });
-
-
     }
 }
 

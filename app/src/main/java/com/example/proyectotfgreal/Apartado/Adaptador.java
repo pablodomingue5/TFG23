@@ -79,7 +79,13 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.PersonViewHolder> 
                 for(int a=0; a<todosApartados.size();a++){
                     if(items.get(i).getTitulo().equals(todosApartados.get(a).getNombreApartado())){
                         if(todosApartados.get(a).getListaSub().size()==0){
-                            //Aqui
+                            //Aqui asignar new API
+                            String nombreApartadoSeleccionado =  todosApartados.get(a).getNombreApartado();
+                            String numeroIdentificadorApartado = todosApartados.get(a).getIdentificadorApartado();
+                            Intent iconIntent = new Intent (view.getContext(), ActivityAPI.class);
+                            iconIntent.putExtra("nomnbreApartadoSeleccionado",nombreApartadoSeleccionado);
+                            iconIntent.putExtra("numeroIdentificadorApartado",numeroIdentificadorApartado);
+                            view.getContext().startActivity(iconIntent);
                         }else{
                             ArrayList <EntidadSubApartado> subApartadosDelSeleccionado =  todosApartados.get(a).getListaSub();
                             ArrayList<String> nombresApartados=new ArrayList<>();

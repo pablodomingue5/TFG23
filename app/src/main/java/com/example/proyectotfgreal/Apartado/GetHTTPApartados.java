@@ -2,10 +2,13 @@ package com.example.proyectotfgreal.Apartado;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.proyectotfgreal.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,6 +32,7 @@ public class GetHTTPApartados  extends AsyncTask<Void, Void,String> {
     public RecyclerView.Adapter httpAdapter;
     public Context httpContext;
     ProgressDialog progressDialog;
+    String ip;
     ArrayList<EntidadApartado> arrayEntidadApartado = new ArrayList<>();
     public GetHTTPApartados(ArrayList<Entidad> httpList, RecyclerView httpRecycler, RecyclerView.Adapter httpAdapter, Context httpContext) {
         this.httpList = httpList;
@@ -41,19 +45,20 @@ public class GetHTTPApartados  extends AsyncTask<Void, Void,String> {
         String result = null;
         try {
             String[] parametros = {"idPrueba"};
-            String wsURL = "http://192.168.1.37/TFG/adacc.php?" + parametros[0];
+            ip = httpContext.getString(R.string.ip);
+            String wsURL = "http://"+ip+"/TFG/adacc.php?" + parametros[0];
+            Log.d("DoInBackground",wsURL);
             URI url = new URI(wsURL);
             // Create connection
-            HttpURLConnection myConnection = (HttpURLConnection)
-                    url.toURL().openConnection();
+            HttpURLConnection myConnection = (HttpURLConnection) url.toURL().openConnection();
             // Establecer método. Por defecto GET.
             myConnection.setRequestMethod("GET");
             InputStream in = new BufferedInputStream(myConnection.getInputStream());
             result = inputStreamToString(in);
             Log.d("DoInBackground", result);
         } catch (Exception e) {
-            Log.e("Erro0r", "Erro0r cacth IP 191.168.15");
-            Log.d("Erro0r", "Erro0r cacth IP 191.168.15 " + e);
+            Log.e("Erro0r", "Erro0r cacth IP "+ip);
+            Log.d("Erro0r", "Erro0r cacth IP "+ip+" "+e);
         }
         return result;
     }
@@ -63,7 +68,6 @@ public class GetHTTPApartados  extends AsyncTask<Void, Void,String> {
         Log.v("INICIO","INICIANDO");
         progressDialog = ProgressDialog.show(httpContext, "descargando", "Por favor, espera");
     }
-
 
     public ArrayList<EntidadApartado> metodoDefinitivoApartados(String s) {
         ArrayList<EntidadApartado> registrosDefinitivos=new ArrayList<>();
@@ -215,5 +219,4 @@ public class GetHTTPApartados  extends AsyncTask<Void, Void,String> {
         }
         return answer.toString();
     }
-
 }

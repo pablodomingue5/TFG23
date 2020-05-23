@@ -41,15 +41,7 @@ public class Activity1 extends Activity {
         recycler= (RecyclerView) findViewById(R.id.ReciclerView1);
         recycler.setHasFixedSize(true);
         iManager = new LinearLayoutManager(this);
-/*
-        ArrayList <String> nombresSubApartadoRecibido=getIntent().getExtras().getStringArrayList("SubApartadoNombre");
-        ArrayList <String> identicadorSubApartadoRecibido=getIntent().getExtras().getStringArrayList("SubApartadoIdentificador");
-        ArrayList <String> imagenesSubApartadoRecibido=getIntent().getExtras().getStringArrayList("SubApartadoImagenes");
-        for(int a=0;a<nombresSubApartadoRecibido.size();a++){
-            EntidadSubApartado x = new EntidadSubApartado (nombresSubApartadoRecibido.get(a), identicadorSubApartadoRecibido.get(a),imagenesSubApartadoRecibido.get(a));
-            Log.d("Activity1","Datos recibidos: "+nombresSubApartadoRecibido.get(a)+" "+imagenesSubApartadoRecibido.get(a));
-            httpList.add(x);
-        }*/
+
         adapter = new AdaptadorSubapartado(this.httpList);
         recycler.setLayoutManager(iManager);
         recycler.setAdapter(adapter);

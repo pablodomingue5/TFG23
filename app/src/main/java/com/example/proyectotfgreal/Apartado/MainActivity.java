@@ -25,16 +25,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTitle("Tipos de Coches");
         setContentView(R.layout.activity_main);
-
-
         recycler= (RecyclerView) findViewById(R.id.ReciclerView);
         recycler.setHasFixedSize(true);
-
         iManager = new LinearLayoutManager(this);
         recycler.setLayoutManager(iManager);
         //recycler.setAdapter(adapter);
         llamarHttpClass();
-
     }
     private void llamarHttpClass() {
         GetHTTPApartados claes= new GetHTTPApartados(entidad,recycler, adapter,MainActivity.this);

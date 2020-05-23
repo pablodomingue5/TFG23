@@ -7,6 +7,7 @@ public class Entidad {
     private String titulo;
     private String urlImagen;
     private ArrayList<EntidadApartado> arrayEntidadApartado;
+    public ArrayList<EntidadSubApartado> arraySubApartado;
     public Entidad(String tituloM, String urlImg){
         // this.imgFoto=imgFoto;
         titulo=tituloM;
@@ -19,6 +20,7 @@ public class Entidad {
         urlImagen=urlImg;
         arrayEntidadApartado=arrayEntidadApartadoM;
     }
+
     public int getImgFoto(){
         return imgFoto;
     }

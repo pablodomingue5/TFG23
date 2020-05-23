@@ -20,26 +20,25 @@ public class ActivityAPI extends Activity {
     private RecyclerView.Adapter adapter;
     private Adaptador adaptador;
     private RecyclerView.LayoutManager iManager;
+    public String numeroRegistro;
 
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Tipos de Coches");
+        String nombreApartadoSeleccionado =getIntent().getExtras().getString("nombreApartadoSeleccionado");
+        setTitle(nombreApartadoSeleccionado);
         setContentView(R.layout.activity_main);
-
+        String numeroIdentificadorApartado =getIntent().getExtras().getString("numeroIdentificadorApartado");
+        numeroRegistro = numeroIdentificadorApartado;
         recycler= (RecyclerView) findViewById(R.id.ReciclerView);
         recycler.setHasFixedSize(true);
-
         iManager = new LinearLayoutManager(this);
         recycler.setLayoutManager(iManager);
-        // recycler.setAdapter(adapter);
         llamarHttpClass();
-
     }
 
     private void llamarHttpClass() {
-        GetHTTPApi claes= new GetHTTPApi(entidad,recycler, adapter,ActivityAPI.this);
+        GetHTTPApi claes= new GetHTTPApi(entidad,recycler, adapter, numeroRegistro,ActivityAPI.this);
         claes.execute();
     }
 
