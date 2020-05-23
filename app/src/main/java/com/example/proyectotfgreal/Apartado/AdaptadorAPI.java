@@ -1,31 +1,25 @@
 package com.example.proyectotfgreal.Apartado;
 
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.proyectotfgreal.R;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdaptadorAPI extends RecyclerView.Adapter<AdaptadorAPI.PersonViewHolder>  {
     private List<Entidad> items;
-
     public static class PersonViewHolder extends RecyclerView.ViewHolder {
         // Campos respectivos de un item
         public CardView cardView;
         public ImageView imgFoto;
         public TextView lblModelo;
-
 
         public PersonViewHolder(View v) {
             super(v);
@@ -55,35 +49,25 @@ public class AdaptadorAPI extends RecyclerView.Adapter<AdaptadorAPI.PersonViewHo
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.cardview, parent, false);
         return new PersonViewHolder(v);
-
     }
 
-    // @Override
-
-
+    @Override
     public void onBindViewHolder(PersonViewHolder viewHolder, final int i) {
-        //viewHolder.imagen.setImageResource(items.get(i).getImagen());
-        items.get(i).getTitulo();
-
-
-
+        final String nombreTitulo=items.get(i).getTitulo();
         Picasso.with(viewHolder.imgFoto.getContext())
                 .load(items.get(i).getUrlImagen()).into(viewHolder.imgFoto);
         viewHolder.lblModelo.setText(items.get(i).getTitulo());
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putString("curImagen", items.get(i).getUrlImagen());
-                bundle.putString("curNombre", items.get(i).getTitulo());
+                //Cosa de Testing la mantengo para el futuro por si se quisiera hacer algo raro
+                Toast.makeText(view.getContext(), "Clicaste en "+nombreTitulo,Toast.LENGTH_SHORT).show();
 
                 // Intent iconIntent = new Intent(view.getContext(), BioActivity.class);
                 //  iconIntent.putExtras(bundle);
                 //  view.getContext().startActivity(iconIntent);
             }
         });
-
-
     }
 }
 

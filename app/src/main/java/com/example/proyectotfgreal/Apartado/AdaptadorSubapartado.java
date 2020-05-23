@@ -2,24 +2,18 @@ package com.example.proyectotfgreal.Apartado;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.proyectotfgreal.R;
 import com.squareup.picasso.Picasso;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class AdaptadorSubapartado extends RecyclerView.Adapter<AdaptadorSubapartado.PersonViewHolder> {
 
@@ -37,7 +31,6 @@ public class AdaptadorSubapartado extends RecyclerView.Adapter<AdaptadorSubapart
             cardView =  v.findViewById(R.id.cardview1);
             imgFoto = v.findViewById(R.id.imgFoto1);
             lblModelo =  v.findViewById(R.id.txtView);
-
         }
     }
     @Override
@@ -48,7 +41,6 @@ public class AdaptadorSubapartado extends RecyclerView.Adapter<AdaptadorSubapart
             return 0 ;
         }
     }
-
 
     public AdaptadorSubapartado(ArrayList<EntidadSubApartado> items) {
         this.items = items;
@@ -66,10 +58,9 @@ public class AdaptadorSubapartado extends RecyclerView.Adapter<AdaptadorSubapart
 
     @Override
     public void onBindViewHolder(@NonNull final AdaptadorSubapartado.PersonViewHolder viewHolder, final int i) {
-        Picasso.with(viewHolder.imgFoto.getContext())
-                .load(items.get(i).getImagenSubApartado()).resize(370,230).into(viewHolder.imgFoto);
-        viewHolder.lblModelo.setText(items.get(i).
-    getNombreSubApartado());
+        Picasso.with(viewHolder.imgFoto.getContext()).load(items.get(i).getImagenSubApartado())
+                .resize(370,230).into(viewHolder.imgFoto);
+        viewHolder.lblModelo.setText(items.get(i).getNombreSubApartado());
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

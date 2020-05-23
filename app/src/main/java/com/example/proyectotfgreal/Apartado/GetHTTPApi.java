@@ -2,18 +2,13 @@ package com.example.proyectotfgreal.Apartado;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.util.Log;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.proyectotfgreal.R;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -44,7 +39,6 @@ public class GetHTTPApi extends AsyncTask<Void,Void,String> {
     @Override
     protected String doInBackground(Void... voids) {
         String result = null;
-
         try {
             String[] parametros = {"idApartadoSeleccionado", numeroApartado};
             String ip = httpContext.getString(R.string.ip);
@@ -66,7 +60,6 @@ public class GetHTTPApi extends AsyncTask<Void,Void,String> {
     protected void onPreExecute() {
         super.onPreExecute();
         progressDialog = ProgressDialog.show(httpContext, "descargando", "Por favor, espera");
-
     }
 
     @Override
@@ -90,6 +83,9 @@ public class GetHTTPApi extends AsyncTask<Void,Void,String> {
                 String nombreModelo = jsonArray.getJSONObject(it).getString("nombreModelo");
                 String urlModelo = jsonArray.getJSONObject(it).getString("urlModelo");
                 String nombreSerie = jsonArray.getJSONObject(it).getString("nombreSerie");
+                if(nombreModelo.equals("null")){
+                    nombreModelo="";
+                }
                 Log.d("OnPostExecute", "Registro Recibido:"+nombreModelo+"-"+urlModelo);
                 Entidad x = new Entidad(nombreSerie+" "+nombreModelo, urlModelo);
                 Log.d("OnPostExecute", "Objeto Recibido:"+x.getTitulo()+"-"+ x.getUrlImagen());
@@ -124,6 +120,5 @@ public class GetHTTPApi extends AsyncTask<Void,Void,String> {
         }
         return answer.toString();
     }
-
 }
 

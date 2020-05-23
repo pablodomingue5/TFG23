@@ -1,7 +1,6 @@
 package com.example.proyectotfgreal.Apartado;
 
 import android.util.Log;
-
 import java.util.ArrayList;
 
 public class EntidadApartado {

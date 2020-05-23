@@ -1,7 +1,6 @@
 package com.example.proyectotfgreal.Apartado;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,19 +8,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.proyectotfgreal.R;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Adaptador extends RecyclerView.Adapter<Adaptador.PersonViewHolder> {
     private ArrayList<Entidad> items;
+    ArrayList<EntidadApartado>todosApartados;
     public static class PersonViewHolder extends RecyclerView.ViewHolder {
         // Campos respectivos de un item
         private CardView cardView;
@@ -63,19 +60,16 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.PersonViewHolder> 
 
     @Override
     public void onBindViewHolder (@NonNull final PersonViewHolder viewHolder, final int i) {
-        //viewHolder.imagen.setImageResource(items.get(i).getImagen());
-        final ArrayList<EntidadApartado>todosApartados = items.get(i).getArrayEntidadApartado();
-
+        todosApartados = items.get(i).getArrayEntidadApartado();
         Picasso.with(viewHolder.imgFoto.getContext())
                 .load(items.get(i).getUrlImagen()).resize(370,230).into(viewHolder.imgFoto);
         viewHolder.lblModelo.setText(items.get(i).getTitulo());
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "Clicaste"+items.get(i).getTitulo(),Toast.LENGTH_SHORT).show();
-                Bundle bundle = new Bundle();
-                bundle.putString("curImagen", items.get(i).getUrlImagen());
-                bundle.putString("curNombre", items.get(i).getTitulo());
+                //Cosa de Testing la mantengo para el futuro por si se quisiera hacer algo raro
+                Toast.makeText(view.getContext(), "Clicaste en "+items.get(i).getTitulo(),Toast.LENGTH_SHORT).show();
+
                 for(int a=0; a<todosApartados.size();a++){
                     if(items.get(i).getTitulo().equals(todosApartados.get(a).getNombreApartado())){
                         if(todosApartados.get(a).getListaSub().size()==0){
@@ -88,6 +82,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.PersonViewHolder> 
                             view.getContext().startActivity(iconIntent);
                         }else{
                             ArrayList <EntidadSubApartado> subApartadosDelSeleccionado =  todosApartados.get(a).getListaSub();
+                            String nombreApartadoSeleccionado = todosApartados.get(a).getNombreApartado();
                             ArrayList<String> nombresApartados=new ArrayList<>();
                             ArrayList<String> identificadores=new ArrayList<>();
                             ArrayList<String> imagenes=new ArrayList<>();
@@ -99,13 +94,13 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.PersonViewHolder> 
                             }
                             Intent iconIntent = new Intent (view.getContext(), Activity1.class);
                             Log.d("AdaptadorListener","Llego a llenar");
+
+                            iconIntent.putExtra("ApartadoSeleccionadoSub",nombreApartadoSeleccionado);
                             iconIntent.putStringArrayListExtra("SubApartadoNombre",nombresApartados);
                             Log.d("AdaptadorListener","Introducio nombres");
                             iconIntent.putStringArrayListExtra("SubApartadoIdentificador",identificadores);
                             iconIntent.putStringArrayListExtra("SubApartadoImagenes",imagenes);
                             view.getContext().startActivity(iconIntent);
-
-
                             }
                         }
                     }

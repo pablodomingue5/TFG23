@@ -2,23 +2,17 @@ package com.example.proyectotfgreal.Apartado;
 
 import android.app.Activity;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.proyectotfgreal.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class ActivityAPI extends Activity {
     public List<Entidad> entidad=new ArrayList() ;
-
-
     private RecyclerView recycler;
     private RecyclerView.Adapter adapter;
-    private Adaptador adaptador;
+    private AdaptadorAPI adaptador;
     private RecyclerView.LayoutManager iManager;
     public String numeroRegistro;
 

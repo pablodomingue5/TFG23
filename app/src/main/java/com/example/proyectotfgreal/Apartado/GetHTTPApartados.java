@@ -2,18 +2,13 @@ package com.example.proyectotfgreal.Apartado;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.util.Log;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.proyectotfgreal.R;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -98,8 +93,6 @@ public class GetHTTPApartados  extends AsyncTask<Void, Void,String> {
             //Si contiene recoges la lista de subapartados y la muestras como hicimoss con apartado
             //De esta forma podemos hasta parametrizar los switch asi que no hace falta definirlos :)
              registrosDefinitivos=metodoOrdenadorDefinitivoFinalDestruccion(registroIniciales);
-
-
         } catch (JSONException e) {
             Log.d("recogiendoRegistros",e.toString());
         } catch (UnsupportedEncodingException e) {

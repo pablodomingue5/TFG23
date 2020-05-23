@@ -3,19 +3,12 @@ package com.example.proyectotfgreal.Apartado;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.ListView;
-
 import com.example.proyectotfgreal.R;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public ArrayList<Entidad> entidad=new ArrayList() ;
-    private ListView lvItems;
     private Adaptador adaptador;
     private RecyclerView recycler;
     private RecyclerView.Adapter adapter;
@@ -29,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
         recycler.setHasFixedSize(true);
         iManager = new LinearLayoutManager(this);
         recycler.setLayoutManager(iManager);
-        //recycler.setAdapter(adapter);
         llamarHttpClass();
     }
     private void llamarHttpClass() {
