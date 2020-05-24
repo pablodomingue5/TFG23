@@ -67,7 +67,6 @@ public class AdaptadorAPI extends RecyclerView.Adapter<AdaptadorAPI.PersonViewHo
             @Override
             public void onClick(View view) {
                 //Cosa de Testing la mantengo para el futuro por si se quisiera hacer algo raro
-                Toast.makeText(view.getContext(), "Clicaste en "+nombreSeleccionado,Toast.LENGTH_SHORT).show();
 
                 Intent iconIntent = new Intent(view.getContext(), ActivityDatos.class);
                 iconIntent.putExtra("NumeroSeleccionado",numeroSeleccionado);

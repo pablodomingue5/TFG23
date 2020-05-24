@@ -66,7 +66,6 @@ public class AdaptadorSubapartado extends RecyclerView.Adapter<AdaptadorSubapart
             public void onClick(View view) {
                 String nombreSubApartadoElegido=items.get(i).getNombreSubApartado();
                 String numeroElegido = items.get(i).getNumeroIdentificadorSubApartado();
-                Toast.makeText(view.getContext(), "Clicaste"+items.get(i).getNombreSubApartado(),Toast.LENGTH_SHORT).show();
                 Intent iconIntent = new Intent (view.getContext(), ActivityAPI.class);
                 iconIntent.putExtra("nomnbreApartadoSeleccionado",nombreSubApartadoElegido);
                 iconIntent.putExtra("numeroIdentificadorApartado",numeroElegido);

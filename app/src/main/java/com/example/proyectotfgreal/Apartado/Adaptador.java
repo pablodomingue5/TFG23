@@ -68,8 +68,6 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.PersonViewHolder> 
             @Override
             public void onClick(View view) {
                 //Cosa de Testing la mantengo para el futuro por si se quisiera hacer algo raro
-                Toast.makeText(view.getContext(), "Clicaste en "+items.get(i).getTitulo(),Toast.LENGTH_SHORT).show();
-
                 for(int a=0; a<todosApartados.size();a++){
                     if(items.get(i).getTitulo().equals(todosApartados.get(a).getNombreApartado())){
                         if(todosApartados.get(a).getListaSub().size()==0){
