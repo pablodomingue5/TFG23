@@ -1,5 +1,8 @@
 package com.example.proyectotfgreal.Apartado;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,19 +56,22 @@ public class AdaptadorAPI extends RecyclerView.Adapter<AdaptadorAPI.PersonViewHo
 
     @Override
     public void onBindViewHolder(PersonViewHolder viewHolder, final int i) {
-        final String nombreTitulo=items.get(i).getTitulo();
+        final int numeroSeleccionado=items.get(i).getNumeroId();
+        final String nombreSeleccionado=items.get(i).getTitulo();
+        final String imagenSeleccionada=items.get(i).getUrlImagen();
+        Log.d("OnBindViewHolder",imagenSeleccionada);
         Picasso.with(viewHolder.imgFoto.getContext())
-                .load(items.get(i).getUrlImagen()).into(viewHolder.imgFoto);
-        viewHolder.lblModelo.setText(items.get(i).getTitulo());
+                .load(imagenSeleccionada).into(viewHolder.imgFoto);
+        viewHolder.lblModelo.setText(nombreSeleccionado);
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Cosa de Testing la mantengo para el futuro por si se quisiera hacer algo raro
-                Toast.makeText(view.getContext(), "Clicaste en "+nombreTitulo,Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), "Clicaste en "+nombreSeleccionado,Toast.LENGTH_SHORT).show();
 
-                // Intent iconIntent = new Intent(view.getContext(), BioActivity.class);
-                //  iconIntent.putExtras(bundle);
-                //  view.getContext().startActivity(iconIntent);
+                Intent iconIntent = new Intent(view.getContext(), ActivityDatos.class);
+                iconIntent.putExtra("NumeroSeleccionado",numeroSeleccionado);
+                view.getContext().startActivity(iconIntent);
             }
         });
     }

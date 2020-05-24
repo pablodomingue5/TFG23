@@ -11,8 +11,7 @@ import java.util.List;
 public class ActivityAPI extends Activity {
     public List<Entidad> entidad=new ArrayList() ;
     private RecyclerView recycler;
-    private RecyclerView.Adapter adapter;
-    private AdaptadorAPI adaptador;
+    public AdaptadorAPI adaptador;
     private RecyclerView.LayoutManager iManager;
     public String numeroRegistro;
 
@@ -32,7 +31,7 @@ public class ActivityAPI extends Activity {
     }
 
     private void llamarHttpClass() {
-        GetHTTPApi claes= new GetHTTPApi(entidad,recycler, adapter, numeroRegistro,ActivityAPI.this);
+        GetHTTPApi claes= new GetHTTPApi(entidad,recycler, adaptador, numeroRegistro,ActivityAPI.this);
         claes.execute();
     }
 

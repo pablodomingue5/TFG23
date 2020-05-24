@@ -3,11 +3,11 @@ package com.example.proyectotfgreal.Apartado;
 import java.util.ArrayList;
 
 public class Entidad {
-    private int imgFoto;
     private String titulo;
     private String urlImagen;
     private ArrayList<EntidadApartado> arrayEntidadApartado;
     public ArrayList<EntidadSubApartado> arraySubApartado;
+    public int numeroId;
     public Entidad(String tituloM, String urlImg){
         // this.imgFoto=imgFoto;
         titulo=tituloM;
@@ -21,10 +21,11 @@ public class Entidad {
         arrayEntidadApartado=arrayEntidadApartadoM;
     }
 
-    public int getImgFoto(){
-        return imgFoto;
+    public Entidad(String tituloM, String urlModelo, int idModelo) {
+        titulo=tituloM;
+        urlImagen=urlModelo;
+        numeroId=idModelo;
     }
-
     public String getTitulo() {
         return titulo;
     }
@@ -32,5 +33,9 @@ public class Entidad {
     public String getUrlImagen(){return urlImagen;}
     public  ArrayList <EntidadApartado> getArrayEntidadApartado(){
         return arrayEntidadApartado;
+    }
+
+    public int getNumeroId() {
+        return numeroId;
     }
 }

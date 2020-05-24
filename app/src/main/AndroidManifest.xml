@@ -20,6 +20,7 @@
         </activity>
         <activity android:name=".Apartado.Activity1"/>
         <activity android:name=".Apartado.ActivityAPI"/>
+        <activity android:name=".Apartado.ActivityDatos"/>
     </application>
 
 </manifest>

@@ -83,15 +83,16 @@ public class GetHTTPApi extends AsyncTask<Void,Void,String> {
                 String nombreModelo = jsonArray.getJSONObject(it).getString("nombreModelo");
                 String urlModelo = jsonArray.getJSONObject(it).getString("urlModelo");
                 String nombreSerie = jsonArray.getJSONObject(it).getString("nombreSerie");
+                int idModelo = jsonArray.getJSONObject(it).getInt("idModelo");
                 if(nombreModelo.equals("null")){
                     nombreModelo="";
                 }
                 Log.d("OnPostExecute", "Registro Recibido:"+nombreModelo+"-"+urlModelo);
-                Entidad x = new Entidad(nombreSerie+" "+nombreModelo, urlModelo);
+                Entidad x = new Entidad(nombreSerie+" "+nombreModelo, urlModelo, idModelo);
                 Log.d("OnPostExecute", "Objeto Recibido:"+x.getTitulo()+"-"+ x.getUrlImagen());
                 this.httpList.add(x);
             }
-            httpAdapter = new Adaptador((ArrayList<Entidad>) this.httpList);
+            httpAdapter = new AdaptadorAPI(this.httpList);
             httpRecycler.setAdapter(this.httpAdapter);
         } catch (JSONException e) {
             Log.d("OnPostExecute",e.toString());
