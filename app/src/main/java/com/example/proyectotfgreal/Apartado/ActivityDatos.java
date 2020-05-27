@@ -1,9 +1,13 @@
 package com.example.proyectotfgreal.Apartado;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,11 +17,13 @@ public class ActivityDatos  extends AppCompatActivity {
     ImageView imgFoto;
     TextView inModelo, inMarca, inAno, inHP, inMotor, inCombustible, inTraccion, inTransmision, inMarcha, inMax, inCC, inCuerpo, inVersion, lbVersion;
     Context contexto;
+    Button btnComentarios;
+    int numeroSeleccionado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datos);
-        int numeroSeleccionado = getIntent().getExtras().getInt("NumeroSeleccionado");
+        numeroSeleccionado = getIntent().getExtras().getInt("NumeroSeleccionado");
         imgFoto = findViewById(R.id.imageView);
         inModelo = findViewById(R.id.inNombre);
         inMarca = findViewById(R.id.inMarca);
@@ -33,12 +39,23 @@ public class ActivityDatos  extends AppCompatActivity {
         inCuerpo = findViewById(R.id.inCuerpo);
         inVersion = findViewById(R.id.inVersion);
         lbVersion = findViewById(R.id.lbVersion);
+        btnComentarios = findViewById(R.id.btn_mensaje);
         contexto = getApplicationContext();
         setTitle("Coche especifico");
         llamarHttpClass(numeroSeleccionado);
+        btnComentarios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Clicaste WeoN", Toast.LENGTH_SHORT).show();
+                Intent iconIntent = new Intent (view.getContext(), ActivityComentariosDatos.class);
+                iconIntent.putExtra("numeroIdentificadorModelo",numeroSeleccionado);
+                view.getContext().startActivity(iconIntent);
+            }
+        });
+
     }
     private void llamarHttpClass(int numeroSeleccionadoD) {
-        ConectandoHTP claes= new ConectandoHTP(imgFoto,inModelo,inMarca,inAno,inHP,inMotor,inCombustible,inTraccion,inTransmision,inMarcha,inMax,inCC,inCuerpo,inVersion,lbVersion, numeroSeleccionadoD, contexto);
+        ConectandoHTPDatos claes= new ConectandoHTPDatos(imgFoto,inModelo,inMarca,inAno,inHP,inMotor,inCombustible,inTraccion,inTransmision,inMarcha,inMax,inCC,inCuerpo,inVersion,lbVersion, numeroSeleccionadoD, contexto);
         claes.execute();
     }
 }

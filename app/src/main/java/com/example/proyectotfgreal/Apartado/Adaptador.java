@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,7 +29,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.PersonViewHolder> 
             super(v);
             cardView =  v.findViewById(R.id.cardview1);
             imgFoto = v.findViewById(R.id.imgFoto1);
-            lblModelo =  v.findViewById(R.id.txtView);
+            lblModelo =  v.findViewById(R.id.txtComentario);
 
         }
     }

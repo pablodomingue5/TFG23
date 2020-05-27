@@ -25,7 +25,7 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URLDecoder;
 
-public class ConectandoHTP extends AsyncTask<Void, Void,String> {
+public class ConectandoHTPDatos extends AsyncTask<Void, Void,String> {
     private EntidadDatos x;
     public int numeroSeleccionado;
     private ImageView imgFoto;
@@ -33,10 +33,10 @@ public class ConectandoHTP extends AsyncTask<Void, Void,String> {
     private Context contexto;
     private Handler handlerFoto;
 
-    ConectandoHTP(ImageView imgFotoR, TextView inModeloR, TextView inMarcaR, TextView inAnoR, TextView inHPR,
-                  TextView inMotorR, TextView inCombustibleR, TextView inTraccionR,
-                  TextView inTransmisionR, TextView inMarchaR, TextView inMaxR, TextView inCCR,
-                  TextView inCuerpoR, TextView inVersionR, TextView lbVersionR, int numeroSeleccionadoR, Context contextoR) {
+    ConectandoHTPDatos(ImageView imgFotoR, TextView inModeloR, TextView inMarcaR, TextView inAnoR, TextView inHPR,
+                       TextView inMotorR, TextView inCombustibleR, TextView inTraccionR,
+                       TextView inTransmisionR, TextView inMarchaR, TextView inMaxR, TextView inCCR,
+                       TextView inCuerpoR, TextView inVersionR, TextView lbVersionR, int numeroSeleccionadoR, Context contextoR) {
         numeroSeleccionado=numeroSeleccionadoR;
         imgFoto = imgFotoR;
         inModelo = inModeloR;
