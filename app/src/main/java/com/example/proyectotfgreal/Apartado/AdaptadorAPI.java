@@ -61,7 +61,7 @@ public class AdaptadorAPI extends RecyclerView.Adapter<AdaptadorAPI.PersonViewHo
         final String imagenSeleccionada=items.get(i).getUrlImagen();
         Log.d("OnBindViewHolder",imagenSeleccionada);
         Picasso.with(viewHolder.imgFoto.getContext())
-                .load(imagenSeleccionada).into(viewHolder.imgFoto);
+                .load(imagenSeleccionada).resize(370,230).into(viewHolder.imgFoto);
         viewHolder.lblModelo.setText(nombreSeleccionado);
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
