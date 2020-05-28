@@ -2,6 +2,9 @@ package com.example.proyectotfgreal.Apartado;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +20,8 @@ public class ActivityComentariosDatos extends Activity {
     private RecyclerView recycler;
     public AdaptadorComentarioDatos adaptador;
     private RecyclerView.LayoutManager iManager;
+    public Button btnEnvio;
+    public TextView textoInput;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +32,24 @@ public class ActivityComentariosDatos extends Activity {
         iManager = new LinearLayoutManager(this);
         recycler.setLayoutManager(iManager);
         //metele el Lisener del boton hueoN
+        btnEnvio=findViewById(R.id.btnInsertarComentario);
+        textoInput=findViewById(R.id.inComentario);
+        btnEnvio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String comentario;
+                String usuario = null;
+                comentario=textoInput.getText().toString();
+                if(comentario.equals("")){
+                    //no hacer nada
+                }else{
+                    //Mandar comentario
+                    MandandoCosa xs = new MandandoCosa(usuario,comentario,numeroRegistro);
 
+                    //Refrescar llamarHTTp
+                }
+            }
+        });
 
         llamarHttpClass(numeroRegistro);
     }
