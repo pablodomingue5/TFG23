@@ -45,18 +45,24 @@ class ConectandoHTTPComentario extends AsyncTask<Void, Void,String> {
     protected String doInBackground(Void... voids) {
         String result = null;
         try {
-            String[] parametros = {"idComentario",numeroApartado};
+            String[] parametros = {"idModeloComentarios",numeroApartado};
             ip = httpContext.getString(R.string.ip);
             String wsURL = "http://"+ip+"/TFG/adacc.php?" + parametros[0]+"="+parametros[1];
-            Log.d("DoInBackground",wsURL);
+            Log.d("Linea",wsURL);
             URI url = new URI(wsURL);
             // Create connection
+            Log.d("linea", "continua url");
+
             HttpURLConnection myConnection = (HttpURLConnection) url.toURL().openConnection();
+            Log.d("linea", "abre conexion");
+
             // Establecer método. Por defecto GET.
             myConnection.setRequestMethod("GET");
             InputStream in = new BufferedInputStream(myConnection.getInputStream());
+            Log.d("linea", "abre input");
+
             result = inputStreamToString(in);
-            Log.d("DoInBackground", result);
+            Log.d("linea", result);
         } catch (Exception e) {
             Log.e("Erro0r", "Erro0r cacth IP "+ip);
             Log.d("Erro0r", "Erro0r cacth IP "+ip+" "+e);
