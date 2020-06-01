@@ -33,6 +33,7 @@ public class ActivityComentariosDatos extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comentarios);
+        Log.d("Linea","Llego a ejecutar la cosa");
         numeroRegistro =getIntent().getExtras().getInt("numeroIdentificadorModelo");
         recycler= (RecyclerView) findViewById(R.id.ReciclerView);
         recycler.setHasFixedSize(true);
@@ -67,7 +68,16 @@ public class ActivityComentariosDatos extends Activity {
     }
     private void envioComentario(String comentario, String usuario) {
         MandandoCosa xs = new MandandoCosa(usuario,comentario,numeroRegistro);
-        GetHTTPDatos cas =  new GetHTTPDatos(xs.getFechaActual(),xs.getComentario(),xs.getUsuario(),xs.getNumeroModelo(),getApplicationContext());
+        String fecha =xs.getFechaActual();
+        Log.d("Linea","La fecha es:"+fecha);
+        String comentarioR=xs.getComentario();
+        Log.d("Linea","La contenido es:"+comentarioR);
+        String usuarioNumero =xs.getUsuario();
+        Log.d("Linea","La usuario es:"+usuarioNumero);
+        int numeroModelo =xs.getNumeroModelo();
+        Log.d("Linea","La numeroModelo es:"+numeroModelo);
+        Context contectoR =getApplicationContext();
+        GetHTTPDatos cas =  new GetHTTPDatos(fecha,comentarioR,usuarioNumero,numeroModelo,contectoR);
         cas.execute();
     }
 

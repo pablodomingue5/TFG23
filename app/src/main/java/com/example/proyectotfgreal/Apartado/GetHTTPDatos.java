@@ -33,13 +33,12 @@ import java.util.List;
 import static android.widget.Toast.LENGTH_LONG;
 
 public class GetHTTPDatos extends AsyncTask<Void,Void,String> {
-private RecyclerView.Adapter httpAdapter;
-        ProgressDialog progressDialog;
+    ProgressDialog progressDialog;
     String fechaActual;
-        String comentario;
-        String usuario;
-        int numeroModelo;
-        Context contexto;
+    String comentario;
+    String usuario;
+    int numeroModelo;
+    Context contexto;
 
 public GetHTTPDatos(String fechaActualR, String comentarioR, String usuarioR, int numeroModeloR, Context applicationContext) {
         fechaActual=fechaActualR;
@@ -51,7 +50,6 @@ public GetHTTPDatos(String fechaActualR, String comentarioR, String usuarioR, in
 @Override
 protected String doInBackground(Void... voids) {
         String result = null;
-
         try {
         String[] parametros = {"fechaComentario",fechaActual,"contenidoComentario",comentario,"modeloSeleccionado",usuario,"usuarioNumero",numeroModelo+""};
         String ip = contexto.getString(R.string.ip);
