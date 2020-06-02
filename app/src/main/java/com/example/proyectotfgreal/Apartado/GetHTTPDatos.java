@@ -37,80 +37,76 @@ public class GetHTTPDatos extends AsyncTask<Void,Void,String> {
     String fechaActual;
     String comentario;
     String usuario;
-    int numeroModelo;
+    String numeroModelo;
     Context contexto;
 
-public GetHTTPDatos(String fechaActualR, String comentarioR, String usuarioR, int numeroModeloR, Context applicationContext) {
+public GetHTTPDatos(String fechaActualR, String comentarioR, String usuarioR, String numeroModeloR, Context contexto) {
         fechaActual=fechaActualR;
         comentario = comentarioR;
         usuario = usuarioR;
         numeroModelo = numeroModeloR;
-        contexto = applicationContext;
+        this.contexto = contexto;
         }
 @Override
 protected String doInBackground(Void... voids) {
         String result = null;
+        Log.d("EnvioSentencia","Llega a in do background");
         try {
-        String[] parametros = {"fechaComentario",fechaActual,"contenidoComentario",comentario,"modeloSeleccionado",usuario,"usuarioNumero",numeroModelo+""};
-        String ip = contexto.getString(R.string.ip);
-        //192.168.1.115/TFG/adacc.php?fechaComentario=VARIABLE&contenidoComentario=VARIABLE&idModeloFK=VARIABLE&idUsuarioFK=VARIABLE
-        String wsURL = "http://"+ip+"/TFG/adacc.php?" + parametros[0] + "=" + parametros[1]+"&"+parametros[2]+"="+parametros[3]+"&"+parametros[4]+"="+parametros[5]+"&"+parametros[6]+"="+parametros[7]+";";
-        URL url = new URL(wsURL);
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-        result = inputStreamToString(in);
-        Log.d("DoInBackground", result);
-
+                String[] nombreParametros = {"fechaComentario","contenidoComentario","usuarioNumero","modeloSeleccionado"};
+                String[] registrosParametros = {fechaActual,comentario,usuario,numeroModelo};
+                String ip = contexto.getString(R.string.ip);
+                //192.168.1.115/TFG/adacc.php?fechaComentario=VARIABLE&contenidoComentario=VARIABLE&idModeloFK=VARIABLE&idUsuarioFK=VARIABLE
+                String wsURL = "http://"+ip+"/TFG/adacc.php?" + nombreParametros[0] + "=" + registrosParametros[0]+"&"+
+                        nombreParametros[1]+"="+registrosParametros[1]+"&"+nombreParametros[2]+"="+registrosParametros[2]+"&"+nombreParametros[3]+"="+registrosParametros[3];
+                Log.d("EnvioSentencia",wsURL+"");
+                URL url = new URL(wsURL);
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+                result = inputStreamToString(in);
+                Log.d("EnvioSentencia", result);
         } catch (Exception e) {
-        Log.e("Erro0r", "Erro0r cacth IP 191.168.1");
-        e.printStackTrace();
+                Log.e("Erro0r", "Erro0r cacth IP 191.168.1");
+                e.printStackTrace();
         }
         return result;
         }
 @Override
 protected void onPreExecute() {
         super.onPreExecute();
-        progressDialog = ProgressDialog.show(contexto, "descargando", "Por favor, espera");
+        //progressDialog = ProgressDialog.show(contexto, "Subiendo", "Por favor, espera");
         }
 
 @Override
 protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        progressDialog.dismiss();
+      // progressDialog.dismiss();
         Log.d("OnPostExecute", "Comienza el try");
         String line = "";
         StringBuilder responseStrBuilder = new StringBuilder();
-        try {
-        ///Error Sucede aqui salta a error cach json
-        JSONObject jsonObject = new JSONObject(URLDecoder.decode(s, "UTF-8" ));
-        JSONArray jsonArray = jsonObject.getJSONArray("coches");
-        // JSONObject jsonObject = new JSONObject(responseStrBuilder.toString());
-        Log.d("OnPostExecute", "Primer objeto del try");
-        //JSONArray jsonArray = jsonObject.getJSONArray("coches");
-        Log.d("OnPostExecute", "Array del try");
-        Log.d("OnPostExecute", jsonArray+"");
-        for (int it = 0; it < jsonArray.length(); it++) {
-        Log.d("OnPostExecute", "Entro en for contador:"+it+"de"+jsonArray.length());
-        //String nombreModelo = jsonArray.getJSONObject(it).getString("nombreModelo");
-       // int idModelo = jsonArray.getJSONObject(it).getInt("id");
-            int idModelo = jsonArray.getJSONObject(it).getInt("id");
-        //if(nombreModelo.equals("null")){
-        //nombreModelo="";
-        //}
-            Toast.makeText(contexto,idModelo+"",LENGTH_LONG).show();
-        Log.d("OnPostExecute", "Registro Recibido:");
-       // Entidad x = new Entidad(nombreSerie+" "+nombreModelo, urlModelo, idModelo);
-        Log.d("OnPostExecute", "Objeto Recibido:"+idModelo+"");
-        //this.httpList.add(x);
+                try {
+                        ///Error Sucede aqui salta a error cach json
+                        JSONObject jsonObject = new JSONObject(URLDecoder.decode(s, "UTF-8" ));
+                        // JSONObject jsonObject = new JSONObject(responseStrBuilder.toString());
+                        Log.d("OnPostExecute", "Primer objeto del try");
+                        //JSONArray jsonArray = jsonObject.getJSONArray("coches");
+                        Log.d("OnPostExecute", "Array del try");
+
+                        //String nombreModelo = jsonArray.getJSONObject(it).getString("nombreModelo");
+                       // int idModelo = jsonArray.getJSONObject(it).getInt("id")
+                        int idModelo = jsonObject.getInt("id");
+                        //if(nombreModelo.equals("null")){
+                        //nombreModelo="";
+                        Toast.makeText(contexto,idModelo+"",LENGTH_LONG).show();
+                        Log.d("OnPostExecute", "Registro Recibido:");
+                       // Entidad x = new Entidad(nombreSerie+" "+nombreModelo, urlModelo, idModelo);
+                        Log.d("OnPostExecute", "Objeto Recibido:"+idModelo+"");
+                } catch (JSONException ex) {
+                        Log.d("OnPostExecute",ex.toString());
+                } catch (UnsupportedEncodingException ex) {
+                        ex.printStackTrace();
+                }
         }
-        //httpAdapter = new AdaptadorAPI(this.httpList);
-        //httpRecycler.setAdapter(this.httpAdapter);
-        } catch (JSONException e) {
-        Log.d("OnPostExecute",e.toString());
-        } catch (UnsupportedEncodingException e) {
-        e.printStackTrace();
-        }
-        }
+
 
 private String inputStreamToString(InputStream inputStream) {
         String rLine = "";

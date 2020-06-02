@@ -41,7 +41,7 @@ public class ActivityComentariosDatos extends Activity {
         recycler.setLayoutManager(iManager);
         //metele el Lisener del boton hueoN
         btnEnvio=findViewById(R.id.btnInsertarComentario);
-        textoInput=findViewById(R.id.inComentario);
+        textoInput=findViewById(R.id.inComentario2);
         btnEnvio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +74,7 @@ public class ActivityComentariosDatos extends Activity {
         Log.d("Linea","La contenido es:"+comentarioR);
         String usuarioNumero =xs.getUsuario();
         Log.d("Linea","La usuario es:"+usuarioNumero);
-        int numeroModelo =xs.getNumeroModelo();
+        String numeroModelo =xs.getNumeroModelo()+"";
         Log.d("Linea","La numeroModelo es:"+numeroModelo);
         Context contectoR =getApplicationContext();
         GetHTTPDatos cas =  new GetHTTPDatos(fecha,comentarioR,usuarioNumero,numeroModelo,contectoR);
