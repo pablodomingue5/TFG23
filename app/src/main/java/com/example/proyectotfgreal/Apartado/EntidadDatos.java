@@ -57,7 +57,11 @@ inVersion con if
         Log.d("EntidadesCreadas", "Segunda mitad en entidad credada ");
         cilindrada=cilindradaR;
         cuerpo=cuerpoR;
-        version=versionR;
+        if(versionR.equals("null")){
+            version="";
+        }else {
+            version = versionR;
+        }
         Log.d("EntidadesCreadas", "Creado entidad "+getNombreModelo());
 
     }

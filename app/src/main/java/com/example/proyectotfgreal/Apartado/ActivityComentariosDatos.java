@@ -2,6 +2,7 @@ package com.example.proyectotfgreal.Apartado;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -79,6 +80,10 @@ public class ActivityComentariosDatos extends Activity {
         Context contectoR =getApplicationContext();
         GetHTTPDatos cas =  new GetHTTPDatos(fecha,comentarioR,usuarioNumero,numeroModelo,contectoR);
         cas.execute();
+        finish();
+        Intent iconIntent = new Intent(getApplicationContext(), ActivityComentariosDatos.class);
+        iconIntent.putExtra("numeroIdentificadorModelo",xs.getNumeroModelo());
+        getApplicationContext().startActivity(iconIntent);
     }
 
 }
