@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Proyecto TFG REAL</string>ç
     <string name="ip">192.168.1.115</string>
+    <string name="usuario"></string>
 </resources>

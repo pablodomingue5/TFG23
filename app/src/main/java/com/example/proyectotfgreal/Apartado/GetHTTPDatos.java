@@ -81,9 +81,7 @@ protected void onPostExecute(String s) {
         super.onPostExecute(s);
       // progressDialog.dismiss();
         Log.d("OnPostExecute", "Comienza el try");
-        String line = "";
-        StringBuilder responseStrBuilder = new StringBuilder();
-                try {
+             try {
                         ///Error Sucede aqui salta a error cach json
                         JSONObject jsonObject = new JSONObject(URLDecoder.decode(s, "UTF-8" ));
                         // JSONObject jsonObject = new JSONObject(responseStrBuilder.toString());
