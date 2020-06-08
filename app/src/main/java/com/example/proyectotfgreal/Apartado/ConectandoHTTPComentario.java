@@ -22,7 +22,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URLDecoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 class ConectandoHTTPComentario extends AsyncTask<Void, Void,String> {
 
@@ -45,18 +49,24 @@ class ConectandoHTTPComentario extends AsyncTask<Void, Void,String> {
     protected String doInBackground(Void... voids) {
         String result = null;
         try {
-            String[] parametros = {"idComentario",numeroApartado};
+            String[] parametros = {"idModeloComentarios",numeroApartado};
             ip = httpContext.getString(R.string.ip);
             String wsURL = "http://"+ip+"/TFG/adacc.php?" + parametros[0]+"="+parametros[1];
-            Log.d("DoInBackground",wsURL);
+            Log.d("Linea",wsURL);
             URI url = new URI(wsURL);
             // Create connection
+            Log.d("linea", "continua url");
+
             HttpURLConnection myConnection = (HttpURLConnection) url.toURL().openConnection();
+            Log.d("linea", "abre conexion");
+
             // Establecer método. Por defecto GET.
             myConnection.setRequestMethod("GET");
             InputStream in = new BufferedInputStream(myConnection.getInputStream());
+            Log.d("linea", "abre input");
+
             result = inputStreamToString(in);
-            Log.d("DoInBackground", result);
+            Log.d("linea", result);
         } catch (Exception e) {
             Log.e("Erro0r", "Erro0r cacth IP "+ip);
             Log.d("Erro0r", "Erro0r cacth IP "+ip+" "+e);
@@ -88,7 +98,8 @@ class ConectandoHTTPComentario extends AsyncTask<Void, Void,String> {
             for (int it = 0; it < jsonArray.length(); it++) {
                 Log.d("OnPostExecute", "Entro en for contador:"+it+"de"+jsonArray.length());
                 //fecha
-                String fecha = jsonArray.getJSONObject(it).getString("Fecha");
+                String fecha = fechaModificador(jsonArray.getJSONObject(it).getString("Fecha"));
+
                 //nombreUsuario
                 String contenidoComentario = jsonArray.getJSONObject(it).getString("Contenido");
                 //contenido
@@ -105,7 +116,37 @@ class ConectandoHTTPComentario extends AsyncTask<Void, Void,String> {
             Log.d("OnPostExecute",e.toString());
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
+    }
+    public static String diferencia (Date inicio, Date fin){
+
+        long diffInMs = fin.getTime() - inicio.getTime();
+
+        long diffInSec = TimeUnit.MILLISECONDS.toSeconds(diffInMs);
+
+        long hora = diffInSec/3600;
+
+        int dias = (int) (hora/24);
+
+        if (hora<=24){
+            if(hora==0){
+                return "Hace escasos minutos";
+            }else{
+                return "Hace "+String.valueOf(hora)+" horas";
+            }
+        }
+        else{
+            return "Hace "+String.valueOf(dias)+" dias";
+        }
+    }
+    private String fechaModificador(String fecha) throws ParseException {
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        Date i = simpleDateFormat.parse(fecha);
+        Date f = new Date();
+        return diferencia(i,f);
     }
 
 

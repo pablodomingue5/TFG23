@@ -116,6 +116,9 @@ public class ConectandoHTPDatos extends AsyncTask<Void, Void,String> {
             //String idModelo = jsonArray.getJSONObject(it).getString("idModelo");
             // Log.d("OnPostExecute", "recoge idModelo"+idModelo+"");
             String nombreModelo =  jsonArray.getJSONObject(0).getString("Nombre");
+            if(nombreModelo.equals("null")){
+                nombreModelo="";
+            }
             Log.d("recogiendoRegistros", "recoge nombreModelo "+nombreModelo+"");
             String nombreSerie =  jsonArray.getJSONObject(0).getString("Serie");
             Log.d("recogiendoRegistros", "recoge nombreSerie "+nombreSerie+"");
@@ -145,6 +148,8 @@ public class ConectandoHTPDatos extends AsyncTask<Void, Void,String> {
             }catch(JSONException e){
                 Log.d("recogiendoRegistros",e.toString());
                 version=null;
+                lbVersion.setVisibility(View.INVISIBLE);
+                inVersion.setVisibility(View.INVISIBLE);
             }
             Log.d("recogiendoRegistros", "Registro Recibido:"+nombreModelo+"-"+urlModelo);
             x = new EntidadDatos(urlModelo, nombreModelo,nombreSerie,nombreMarca,

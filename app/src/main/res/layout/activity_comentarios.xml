@@ -2,14 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".Apartado.ActivityComentariosDatos">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ReciclerView"
-        android:layout_width="415dp"
-        android:layout_height="605dp"
+        android:layout_width="match_parent"
+        android:layout_height="581dp"
         android:background="#BDBDBD"
         android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,23 +19,32 @@
         android:id="@+id/inComentario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
+        android:hint="Nombre"
         android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ReciclerView" />
+        app:layout_constraintTop_toBottomOf="@+id/ReciclerView"
+        tools:layout_editor_absoluteX="24dp" />
+
+    <EditText
+        android:id="@+id/inComentario2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="Comentario"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/inComentario"
+        tools:layout_editor_absoluteX="24dp" />
 
     <Button
         android:id="@+id/btnInsertarComentario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginLeft="68dp"
-        android:layout_marginTop="32dp"
-        android:text="Button"
-        app:layout_constraintStart_toEndOf="@+id/inComentario"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:text="Enviar"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ReciclerView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
