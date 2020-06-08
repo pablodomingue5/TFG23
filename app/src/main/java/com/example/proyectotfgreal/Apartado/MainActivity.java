@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements  DialogLogin.Exam
     SharedPreferences sharedPreferences;
     String ipSeleccionada;
     String numeroUsuarioSeleccionado;
+    //
     Boolean activoDialog=false;
     SharedPreferences.Editor editor;
 
@@ -30,12 +31,15 @@ public class MainActivity extends AppCompatActivity implements  DialogLogin.Exam
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("Tipos de Coches");
+        //shared preferences son las preferencias puedes quitarlo
         sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         String valorUsuario=sharedPreferences.getString("UsuarioConectado","");
         if(valorUsuario==""){
+            //Aqui se llama al codigo de opendialog, junto al activoDialog son innecesdairos
             OpenDialog();
             activoDialog=true;
         }
+        //
         setContentView(R.layout.activity_main);
         recycler= (RecyclerView) findViewById(R.id.ReciclerView);
         recycler.setHasFixedSize(true);
@@ -47,6 +51,9 @@ public class MainActivity extends AppCompatActivity implements  DialogLogin.Exam
         GetHTTPApartados claes= new GetHTTPApartados(entidad,recycler, adapter,MainActivity.this);
         claes.execute();
     }
+    /*
+    Esto habre el dialog
+     */
     public void OpenDialog(){
         Log.d("OpenDialog","Llego a el metodo");
         DialogLogin exampleDialog = new DialogLogin();
@@ -55,6 +62,9 @@ public class MainActivity extends AppCompatActivity implements  DialogLogin.Exam
         Log.d("OpenDialog","Supuestamente lo mostró");
     }
 
+    /*
+    apply texts forma parte del dialog
+     */
     @Override
     public void applyTexts(String usuario, String ip) {
         numeroUsuarioSeleccionado=usuario;

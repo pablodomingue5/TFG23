@@ -114,6 +114,7 @@ class GetHTTPUsuario extends AsyncTask<Void,Void,String> {
             Log.d("InterpretarDatos", "Array del try");
             Log.d("InterpretarDatos", jsonArray + "");
             idUsuarioObtenido= jsonArray.getJSONObject(0).getInt("idUsuario")+"";
+            //Aqui hace la insercción y devuelve el numero aunque probablemente no te haga falta dejalo como está
         } catch(UnsupportedEncodingException | JSONException e){
             Log.e("InterpretarDatos", "Erro0r CATCH inputStream");
         }
