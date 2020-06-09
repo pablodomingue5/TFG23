@@ -78,18 +78,25 @@ class GetHTTPUsuario extends AsyncTask<Void,Void,String> {
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             result = leerResultado(in);
             if(result.contains("[]")){
-                wsURL = "http://"+ip+"/TFG/adacc.php?" +"nombreUsuario3"+ "=" + nombreUsuario;
+                wsURL = "http://"+ip+"/TFG/adacc.php?" +"nombreUsuario2"+ "=" + nombreUsuario;
                 Log.d("EnvioSentencia",wsURL);
                 url = new URL(wsURL);
                 Log.d("EnvioSentencia","Entro en if");
                 urlConnection = (HttpURLConnection) url.openConnection();
                 InputStream ins = new BufferedInputStream(urlConnection.getInputStream());
                 Log.d("EnvioSentencia",result);
-                result = leerResultado(ins);
+                wsURL = "http://"+ip+"/TFG/adacc.php?" +"nombreUsuario3"+ "=" + nombreUsuario;
+                Log.d("EnvioSentencia",wsURL);
+                url = new URL(wsURL);
+                Log.d("EnvioSentencia","Entro en if");
+                urlConnection = (HttpURLConnection) url.openConnection();
+                InputStream ins2 = new BufferedInputStream(urlConnection.getInputStream());
+                result = leerResultado(ins2);
                 result=InterpretarDato1(result);
             }else{
                 //Recoger
                 result=(InterpretarDato2(result));
+                registrosParametros[2]= result;
             }
             Log.d("EnvioSentencia", result);
         } catch (Exception e) {
@@ -157,15 +164,16 @@ class GetHTTPUsuario extends AsyncTask<Void,Void,String> {
     private String InterpretarDato2(String s) {
         String idUsuarioObtenido="";
         try {
-            Log.d("InterpretarDatos", "Principio interpretar");
+            Log.d("InterpretarDatos", s);
             JSONObject jsonObject = new JSONObject(URLDecoder.decode(s, "UTF-8"));
-            JSONArray jsonArray = jsonObject.getJSONArray("");
+            JSONArray jsonArray = jsonObject.getJSONArray("coches");
             // JSONObject jsonObject = new JSONObject(responseStrBuilder.toString());
             Log.d("InterpretarDatos", "Primer objeto del try");
             //JSONArray jsonArray = jsonObject.getJSONArray("coches");
             Log.d("InterpretarDatos", "Array del try");
             Log.d("InterpretarDatos", jsonArray + "");
             idUsuarioObtenido= jsonArray.getJSONObject(0).getInt("idUsuario")+"";
+            Log.d("EnvioSentencia",idUsuarioObtenido);
             //Aqui hace la insercción y devuelve el numero aunque probablemente no te haga falta dejalo como está
         } catch(UnsupportedEncodingException | JSONException e){
             Log.e("InterpretarDatos", "Erro0r CATCH inputStream");
