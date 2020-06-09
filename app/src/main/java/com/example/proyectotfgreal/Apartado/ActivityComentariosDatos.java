@@ -3,22 +3,18 @@ package com.example.proyectotfgreal.Apartado;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyectotfgreal.R;
 
-import java.io.BufferedInputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +26,7 @@ public class ActivityComentariosDatos extends Activity {
     private RecyclerView.LayoutManager iManager;
     public Button btnEnvio;
     public TextView textoInput;
+    public TextView textoUsuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,17 +40,27 @@ public class ActivityComentariosDatos extends Activity {
         //metele el Lisener del boton hueoN
         btnEnvio=findViewById(R.id.btnInsertarComentario);
         textoInput=findViewById(R.id.inComentario2);
+        textoUsuario=findViewById(R.id.inComentario);
         btnEnvio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String comentario;
-                String usuario = 2+"";
-                comentario=textoInput.getText().toString();
-                if(comentario.equals("")){
-                    //no hacer nada
-                }else{
+                String comentario1;
+                String usuario = textoUsuario.getText().toString();
+                comentario1=textoInput.getText().toString();
+                if(comentario1.equals("")){
+                    Toast.makeText(getApplicationContext(),"Debes poner un comentario",Toast.LENGTH_SHORT).show();
+                }else if(usuario.equals("")){
+
+                }else
+                    {
                     //Mandar comentario
-                    envioComentario(comentario, usuario);
+                   // envioComentario(comentario, usuario
+                    MandandoCosa xs = new MandandoCosa(comentario1,numeroRegistro+"");
+                    String fecha =xs.getFechaActual();
+                    String numeroModelo=xs.getNumeroModelo();
+                    String comentario = xs.getComentario();
+                    GetHTTPUsuario get = new GetHTTPUsuario(usuario,comentario, fecha, numeroModelo,v,getApplicationContext());
+                    get.execute();
                     //Refrescar llamarHTTp
                 }
             }
@@ -67,6 +74,7 @@ public class ActivityComentariosDatos extends Activity {
         ConectandoHTTPComentario claes= new ConectandoHTTPComentario(entidadComentario,recycler, adaptador, numeroRegistro+"",ActivityComentariosDatos.this);
         claes.execute();
     }
+    /*
     private void envioComentario(String comentario, String usuario) {
         MandandoCosa xs = new MandandoCosa(usuario,comentario,numeroRegistro);
         String fecha =xs.getFechaActual();
@@ -78,12 +86,12 @@ public class ActivityComentariosDatos extends Activity {
         String numeroModelo =xs.getNumeroModelo()+"";
         Log.d("Linea","La numeroModelo es:"+numeroModelo);
         Context contectoR =getApplicationContext();
-        GetHTTPDatos cas =  new GetHTTPDatos(fecha,comentarioR,usuarioNumero,numeroModelo,contectoR);
+        GetHTTPInsercionComentario cas =  new GetHTTPInsercionComentario(fecha,comentarioR,usuarioNumero,numeroModelo,contectoR);
         cas.execute();
         finish();
         Intent iconIntent = new Intent(getApplicationContext(), ActivityComentariosDatos.class);
         iconIntent.putExtra("numeroIdentificadorModelo",xs.getNumeroModelo());
         getApplicationContext().startActivity(iconIntent);
     }
-
+    */
 }

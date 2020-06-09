@@ -32,7 +32,7 @@ import java.util.List;
 
 import static android.widget.Toast.LENGTH_LONG;
 
-public class GetHTTPDatos extends AsyncTask<Void,Void,String> {
+public class GetHTTPInsercionComentario extends AsyncTask<Void,Void,String> {
     ProgressDialog progressDialog;
     String fechaActual;
     String comentario;
@@ -40,7 +40,7 @@ public class GetHTTPDatos extends AsyncTask<Void,Void,String> {
     String numeroModelo;
     Context contexto;
 
-public GetHTTPDatos(String fechaActualR, String comentarioR, String usuarioR, String numeroModeloR, Context contexto) {
+public GetHTTPInsercionComentario(String fechaActualR, String comentarioR, String usuarioR, String numeroModeloR, Context contexto) {
         fechaActual=fechaActualR;
         comentario = comentarioR;
         usuario = usuarioR;

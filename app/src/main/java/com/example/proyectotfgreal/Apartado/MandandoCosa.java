@@ -13,13 +13,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class MandandoCosa {
-    private String usuario;
     private String comentario;
-    private int numeroModelo;
+    private String numeroModelo;
     private String fechaActual;
-    public MandandoCosa(String usuario, String comentario, int numeroModelo){
+    public MandandoCosa(String comentario, String numeroModelo){
         // this.imgFoto=imgFoto;
-        this.usuario=usuario;
         this.comentario=comentario;
         this.numeroModelo=numeroModelo;
         //fecha creado automaticamente con el formato AAAA-MM-DD
@@ -30,8 +28,7 @@ public class MandandoCosa {
         String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
         return timeStamp;
     }
-
-    public int getNumeroModelo() {
+    public String getNumeroModelo() {
         return numeroModelo;
     }
 
@@ -43,7 +40,4 @@ public class MandandoCosa {
         return fechaActual;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
 }
