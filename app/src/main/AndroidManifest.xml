@@ -12,16 +12,16 @@
         android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Apartado.MainActivity">
+        <activity android:name=".Apartado.MainActivity" android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Apartado.ActivitySubApartado"/>
-        <activity android:name=".Apartado.ActivityAPI"/>
-        <activity android:name=".Apartado.ActivityDatos"/>
-        <activity android:name=".Apartado.ActivityComentariosDatos"/>
+        <activity android:name=".Apartado.ActivitySubApartado" android:screenOrientation="portrait" />
+        <activity android:name=".Apartado.ActivityAPI" android:screenOrientation="portrait" />
+        <activity android:name=".Apartado.ActivityDatos" android:screenOrientation="portrait" />
+        <activity android:name=".Apartado.ActivityComentariosDatos" android:screenOrientation="portrait" />
     </application>
 
 </manifest>

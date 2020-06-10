@@ -10,6 +10,6 @@
         android:id="@+id/ReciclerView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#BDBDBD"
+        android:background="#FFFDFD"
         android:padding="10dp" />
 </RelativeLayout>
