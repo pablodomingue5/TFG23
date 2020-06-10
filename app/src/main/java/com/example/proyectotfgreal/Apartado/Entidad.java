@@ -8,14 +8,7 @@ public class Entidad {
     private ArrayList<EntidadApartado> arrayEntidadApartado;
     public ArrayList<EntidadSubApartado> arraySubApartado;
     public int numeroId;
-    public Entidad(String tituloM, String urlImg){
-        // this.imgFoto=imgFoto;
-        titulo=tituloM;
-        urlImagen=urlImg;
-    }
-
     public Entidad(String tituloM, String urlImg, ArrayList<EntidadApartado> arrayEntidadApartadoM){
-       // this.imgFoto=imgFoto;
         titulo=tituloM;
         urlImagen=urlImg;
         arrayEntidadApartado=arrayEntidadApartadoM;

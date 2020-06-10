@@ -77,7 +77,6 @@ public class ConectandoHTPDatos extends AsyncTask<Void, Void,String> {
         return answer.toString();
     }
 
-
     @Override
     protected String doInBackground(Void... voids) {
         String result = null;
@@ -88,17 +87,14 @@ public class ConectandoHTPDatos extends AsyncTask<Void, Void,String> {
             String wsURL = "http://"+ip+"/TFG/adacc.php?" + parametros[0] + "=" + parametros[1];
             URI url = new URI(wsURL);
             // Create connection
-            HttpURLConnection myConnection = (HttpURLConnection)
-                    url.toURL().openConnection();
+            HttpURLConnection myConnection = (HttpURLConnection)url.toURL().openConnection();
             // Establecer método. Por defecto GET.
             myConnection.setRequestMethod("GET");
             InputStream in = new BufferedInputStream(myConnection.getInputStream());
             result = inputStreamToString(in);
             Log.d("DoInBackground", result);
             recogiendoRegistros(result);
-
         } catch (Exception e) {
-            Log.e("Erro0r", "Erro0r cacth IP 191.168.15");
             Log.d("Erro0r", "Erro0r cacth IP 191.168.15 " + e);
         }
         return result;
@@ -109,12 +105,8 @@ public class ConectandoHTPDatos extends AsyncTask<Void, Void,String> {
             ///Error Sucede aqui salta a error cach json
             JSONObject jsonObject = new JSONObject(URLDecoder.decode(s, "UTF-8" ));
             JSONArray jsonArray = jsonObject.getJSONArray("coches");
-            // JSONObject jsonObject = new JSONObject(responseStrBuilder.toString());
             Log.d("recogiendoRegistros", "Primer objeto del try");
-            //JSONArray jsonArray = jsonObject.getJSONArray("coches");
             Log.d("recogiendoRegistros", "Array del try");
-            //String idModelo = jsonArray.getJSONObject(it).getString("idModelo");
-            // Log.d("OnPostExecute", "recoge idModelo"+idModelo+"");
             String nombreModelo =  jsonArray.getJSONObject(0).getString("Nombre");
             if(nombreModelo.equals("null")){
                 nombreModelo="";

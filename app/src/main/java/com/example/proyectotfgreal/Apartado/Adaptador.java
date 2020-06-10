@@ -20,7 +20,6 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.PersonViewHolder> 
     private ArrayList<Entidad> items;
     ArrayList<EntidadApartado>todosApartados;
     public static class PersonViewHolder extends RecyclerView.ViewHolder {
-        // Campos respectivos de un item
         private CardView cardView;
         private ImageView imgFoto;
         private TextView lblModelo;
@@ -40,15 +39,15 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.PersonViewHolder> 
        }else{
            return 0 ;
        }
-       }
+    }
 
 
-    public Adaptador(ArrayList<Entidad> items) {
-        this.items = items;
+    public Adaptador(ArrayList<Entidad> itemsR) {
+        items = itemsR;
     }
 
     public List<Entidad> getItems(){
-        return this.items;
+        return items;
     }
     @NonNull
     @Override
@@ -67,7 +66,6 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.PersonViewHolder> 
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Cosa de Testing la mantengo para el futuro por si se quisiera hacer algo raro
                 for(int a=0; a<todosApartados.size();a++){
                     if(items.get(i).getTitulo().equals(todosApartados.get(a).getNombreApartado())){
                         if(todosApartados.get(a).getListaSub().size()==0){
@@ -90,7 +88,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.PersonViewHolder> 
                                 identificadores.add(subApartado.getNumeroIdentificadorSubApartado());
                                 imagenes.add(subApartado.getImagenSubApartado());
                             }
-                            Intent iconIntent = new Intent (view.getContext(), Activity1.class);
+                            Intent iconIntent = new Intent (view.getContext(), ActivitySubApartado.class);
                             Log.d("AdaptadorListener","Llego a llenar");
 
                             iconIntent.putExtra("ApartadoSeleccionadoSub",nombreApartadoSeleccionado);

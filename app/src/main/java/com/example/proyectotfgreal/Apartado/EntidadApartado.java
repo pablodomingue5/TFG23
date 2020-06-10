@@ -12,20 +12,11 @@ public class EntidadApartado {
     public String getNombreApartado() {
         return nombreApartado;
     }
-    public void setNombreApartado(String nombreApartado) {
-        this.nombreApartado = nombreApartado;
-    }
     public ArrayList<EntidadSubApartado> getListaSub() {
         return listaSub;
     }
-    public void setListaSub(ArrayList<EntidadSubApartado> listaSub) {
-        this.listaSub = listaSub;
-    }
     public String getIdentificadorApartado() {
         return identificadorApartado;
-    }
-    public void setIdentificadorApartado(){
-        this.identificadorApartado=identificadorApartado;
     }
 
     public String getImagen(){

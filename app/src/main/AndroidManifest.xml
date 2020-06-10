@@ -18,7 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Apartado.Activity1"/>
+        <activity android:name=".Apartado.ActivitySubApartado"/>
         <activity android:name=".Apartado.ActivityAPI"/>
         <activity android:name=".Apartado.ActivityDatos"/>
         <activity android:name=".Apartado.ActivityComentariosDatos"/>

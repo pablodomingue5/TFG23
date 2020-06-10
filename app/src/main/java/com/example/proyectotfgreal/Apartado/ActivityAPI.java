@@ -23,9 +23,9 @@ public class ActivityAPI extends Activity {
         setContentView(R.layout.activity_main);
         String numeroIdentificadorApartado =getIntent().getExtras().getString("numeroIdentificadorApartado");
         numeroRegistro = numeroIdentificadorApartado;
-        recycler= (RecyclerView) findViewById(R.id.ReciclerView);
+        recycler= findViewById(R.id.ReciclerView);
         recycler.setHasFixedSize(true);
-        iManager = new LinearLayoutManager(this);
+        iManager = new LinearLayoutManager(getApplicationContext());
         recycler.setLayoutManager(iManager);
         llamarHttpClass();
     }
@@ -34,6 +34,4 @@ public class ActivityAPI extends Activity {
         GetHTTPApi claes= new GetHTTPApi(entidad,recycler, adaptador, numeroRegistro,ActivityAPI.this);
         claes.execute();
     }
-
-
 }

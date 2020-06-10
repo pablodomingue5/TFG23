@@ -25,10 +25,9 @@ public class AdaptadorAPI extends RecyclerView.Adapter<AdaptadorAPI.PersonViewHo
 
         public PersonViewHolder(View v) {
             super(v);
-            cardView = (CardView) v.findViewById(R.id.cardview1);
-            imgFoto = (ImageView) v.findViewById(R.id.imgFoto1);
-            lblModelo = (TextView) v.findViewById(R.id.txtComentario);
-
+            cardView = v.findViewById(R.id.cardview1);
+            imgFoto = v.findViewById(R.id.imgFoto1);
+            lblModelo = v.findViewById(R.id.txtComentario);
         }
     }
 
@@ -37,12 +36,12 @@ public class AdaptadorAPI extends RecyclerView.Adapter<AdaptadorAPI.PersonViewHo
         return items.size();
     }
 
-    public AdaptadorAPI(List<Entidad> items) {
-        this.items = items;
+    public AdaptadorAPI(List<Entidad> itemsR) {
+        items = itemsR;
     }
 
     public List<Entidad> getItems(){
-        return this.items;
+        return items;
     }
 
     @NonNull
@@ -65,8 +64,6 @@ public class AdaptadorAPI extends RecyclerView.Adapter<AdaptadorAPI.PersonViewHo
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Cosa de Testing la mantengo para el futuro por si se quisiera hacer algo raro
-
                 Intent iconIntent = new Intent(view.getContext(), ActivityDatos.class);
                 iconIntent.putExtra("NumeroSeleccionado",numeroSeleccionado);
                 view.getContext().startActivity(iconIntent);

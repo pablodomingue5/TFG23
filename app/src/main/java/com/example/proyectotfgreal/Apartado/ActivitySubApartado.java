@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.proyectotfgreal.R;
 import java.util.ArrayList;
 
-public class Activity1 extends Activity {
+public class ActivitySubApartado extends Activity {
     ArrayList <String> nombresSubApartadoRecibido;
     ArrayList <String> identicadorSubApartadoRecibido;
     ArrayList <String> imagenesSubApartadoRecibido;

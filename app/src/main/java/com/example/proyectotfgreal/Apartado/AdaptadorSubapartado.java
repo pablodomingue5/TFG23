@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,7 +17,6 @@ import java.util.ArrayList;
 public class AdaptadorSubapartado extends RecyclerView.Adapter<AdaptadorSubapartado.PersonViewHolder> {
 
     private ArrayList<EntidadSubApartado> items;
-    MainActivity mainActivity;
     public static class PersonViewHolder extends RecyclerView.ViewHolder {
         // Campos respectivos de un item
         private CardView cardView;
@@ -42,12 +40,12 @@ public class AdaptadorSubapartado extends RecyclerView.Adapter<AdaptadorSubapart
         }
     }
 
-    public AdaptadorSubapartado(ArrayList<EntidadSubApartado> items) {
-        this.items = items;
+    public AdaptadorSubapartado(ArrayList<EntidadSubApartado> itemsR) {
+        items = itemsR;
     }
 
     public ArrayList<EntidadSubApartado> getItems(){
-        return this.items;
+        return items;
     }
     @NonNull
     @Override

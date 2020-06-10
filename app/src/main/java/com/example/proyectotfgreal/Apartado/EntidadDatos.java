@@ -18,21 +18,7 @@ public class EntidadDatos {
     public String cilindrada;
     public String cuerpo;
     public String version;
-    /*
-    inNombre (Serie + Modelo)
-inMarca
-inAno
-inMotor
-inCombustible
-inHP
-inTraccion
-inTransmision splitTransmision 1
-inMarcha splitTransmision 2
-inMax velocidadMax
-inCC
-inCuerpo
-inVersion con if
-     */
+
     public EntidadDatos(String imgFotoR,String modeloR, String serie,String marcaR,String fechaR, String hpR,
                    String nombreMotorR, String combustileR, String traccionR, String transmisionCompeltaR,
                    String velocidadMaximaR, String cilindradaR, String cuerpoR, String versionR)

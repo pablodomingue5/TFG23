@@ -26,14 +26,14 @@ public class GetHTTPApi extends AsyncTask<Void,Void,String> {
     private RecyclerView httpRecycler;
     private RecyclerView.Adapter httpAdapter;
     private Context httpContext;
-    ProgressDialog progressDialog;
-    String numeroApartado;
+    private ProgressDialog progressDialog;
+    private String numeroApartado;
 
-    public GetHTTPApi(List<Entidad> httpList, RecyclerView httpRecycler, RecyclerView.Adapter httpAdapter, String numeroRecibido, Context httpContext) {
-        this.httpList = httpList;
-        this.httpRecycler = httpRecycler;
-        this.httpAdapter = httpAdapter;
-        this.httpContext = httpContext;
+    public GetHTTPApi(List<Entidad> httpListR, RecyclerView httpRecyclerR, RecyclerView.Adapter httpAdapterR, String numeroRecibido, Context httpContextR) {
+        httpList = httpListR;
+        httpRecycler = httpRecyclerR;
+        httpAdapter = httpAdapterR;
+        httpContext = httpContextR;
         numeroApartado=numeroRecibido;
     }
     @Override
@@ -42,17 +42,14 @@ public class GetHTTPApi extends AsyncTask<Void,Void,String> {
         try {
             String[] parametros = {"idApartadoSeleccionado", numeroApartado};
             String ip = httpContext.getString(R.string.ip);
-
             String wsURL = "http://"+ip+"/TFG/adacc.php?" + parametros[0] + "=" + parametros[1];
             URL url = new URL(wsURL);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             result = inputStreamToString(in);
             Log.d("DoInBackground", result);
-
         } catch (Exception e) {
             Log.e("Erro0r", "Erro0r cacth IP 191.168.1");
-            e.printStackTrace();
         }
         return result;
     }
@@ -67,16 +64,10 @@ public class GetHTTPApi extends AsyncTask<Void,Void,String> {
         super.onPostExecute(s);
         progressDialog.dismiss();
         Log.d("OnPostExecute", "Comienza el try");
-        String line = "";
-        StringBuilder responseStrBuilder = new StringBuilder();
         try {
             ///Error Sucede aqui salta a error cach json
             JSONObject jsonObject = new JSONObject(URLDecoder.decode(s, "UTF-8" ));
             JSONArray jsonArray = jsonObject.getJSONArray("coches");
-            // JSONObject jsonObject = new JSONObject(responseStrBuilder.toString());
-            Log.d("OnPostExecute", "Primer objeto del try");
-            //JSONArray jsonArray = jsonObject.getJSONArray("coches");
-            Log.d("OnPostExecute", "Array del try");
             Log.d("OnPostExecute", jsonArray+"");
             for (int it = 0; it < jsonArray.length(); it++) {
                 Log.d("OnPostExecute", "Entro en for contador:"+it+"de"+jsonArray.length());
@@ -90,10 +81,10 @@ public class GetHTTPApi extends AsyncTask<Void,Void,String> {
                 Log.d("OnPostExecute", "Registro Recibido:"+nombreModelo+"-"+urlModelo);
                 Entidad x = new Entidad(nombreSerie+" "+nombreModelo, urlModelo, idModelo);
                 Log.d("OnPostExecute", "Objeto Recibido:"+x.getTitulo()+"-"+ x.getUrlImagen());
-                this.httpList.add(x);
+                httpList.add(x);
             }
-            httpAdapter = new AdaptadorAPI(this.httpList);
-            httpRecycler.setAdapter(this.httpAdapter);
+            httpAdapter = new AdaptadorAPI(httpList);
+            httpRecycler.setAdapter(httpAdapter);
         } catch (JSONException e) {
             Log.d("OnPostExecute",e.toString());
         } catch (UnsupportedEncodingException e) {

@@ -33,11 +33,10 @@ public class ActivityComentariosDatos extends Activity {
         setContentView(R.layout.activity_comentarios);
         Log.d("Linea","Llego a ejecutar la cosa");
         numeroRegistro =getIntent().getExtras().getInt("numeroIdentificadorModelo");
-        recycler= (RecyclerView) findViewById(R.id.ReciclerView);
+        recycler= findViewById(R.id.ReciclerView);
         recycler.setHasFixedSize(true);
         iManager = new LinearLayoutManager(this);
         recycler.setLayoutManager(iManager);
-        //metele el Lisener del boton hueoN
         btnEnvio=findViewById(R.id.btnInsertarComentario);
         textoInput=findViewById(R.id.inComentario2);
         textoUsuario=findViewById(R.id.inComentario);
@@ -50,48 +49,18 @@ public class ActivityComentariosDatos extends Activity {
                 if(comentario1.equals("")){
                     Toast.makeText(getApplicationContext(),"Debes poner un comentario",Toast.LENGTH_SHORT).show();
                 }else if(usuario.equals("")){
-
-                }else
-                    {
-                    //Mandar comentario
-                   // envioComentario(comentario, usuario
+                    Toast.makeText(getApplicationContext(),"Debes poner un usuario",Toast.LENGTH_SHORT).show();
+                }else {
                     MandandoCosa xs = new MandandoCosa(comentario1,numeroRegistro+"");
-                    String fecha =xs.getFechaActual();
-                    String numeroModelo=xs.getNumeroModelo();
-                    String comentario = xs.getComentario();
-                    GetHTTPUsuario get = new GetHTTPUsuario(usuario,comentario, fecha, numeroModelo,v,getApplicationContext());
+                    GetHTTPUsuario get = new GetHTTPUsuario(usuario,xs.getComentario(), xs.getFechaActual(), xs.getNumeroModelo(),v,getApplicationContext());
                     get.execute();
-                    //Refrescar llamarHTTp
                 }
             }
         });
         llamarHttpClass();
     }
-
-
-
     private void llamarHttpClass() {
         ConectandoHTTPComentario claes= new ConectandoHTTPComentario(entidadComentario,recycler, adaptador, numeroRegistro+"",ActivityComentariosDatos.this);
         claes.execute();
     }
-    /*
-    private void envioComentario(String comentario, String usuario) {
-        MandandoCosa xs = new MandandoCosa(usuario,comentario,numeroRegistro);
-        String fecha =xs.getFechaActual();
-        Log.d("Linea","La fecha es:"+fecha);
-        String comentarioR=xs.getComentario();
-        Log.d("Linea","La contenido es:"+comentarioR);
-        String usuarioNumero =xs.getUsuario();
-        Log.d("Linea","La usuario es:"+usuarioNumero);
-        String numeroModelo =xs.getNumeroModelo()+"";
-        Log.d("Linea","La numeroModelo es:"+numeroModelo);
-        Context contectoR =getApplicationContext();
-        GetHTTPInsercionComentario cas =  new GetHTTPInsercionComentario(fecha,comentarioR,usuarioNumero,numeroModelo,contectoR);
-        cas.execute();
-        finish();
-        Intent iconIntent = new Intent(getApplicationContext(), ActivityComentariosDatos.class);
-        iconIntent.putExtra("numeroIdentificadorModelo",xs.getNumeroModelo());
-        getApplicationContext().startActivity(iconIntent);
-    }
-    */
 }

@@ -38,11 +38,11 @@ class ConectandoHTTPComentario extends AsyncTask<Void, Void,String> {
     String numeroApartado;
     String ip;
 
-    public ConectandoHTTPComentario(List<EntidadComentariosDatos> httpList, RecyclerView httpRecycler, RecyclerView.Adapter httpAdapter, String numeroRecibido, Context httpContext) {
-        this.httpList = httpList;
-        this.httpRecycler = httpRecycler;
-        this.httpAdapter = httpAdapter;
-        this.httpContext = httpContext;
+    public ConectandoHTTPComentario(List<EntidadComentariosDatos> httpListR, RecyclerView httpRecyclerR, RecyclerView.Adapter httpAdapterR, String numeroRecibido, Context httpContextR) {
+        httpList = httpListR;
+        httpRecycler = httpRecyclerR;
+        httpAdapter = httpAdapterR;
+        httpContext = httpContextR;
         numeroApartado=numeroRecibido;
     }
     @Override
@@ -56,11 +56,8 @@ class ConectandoHTTPComentario extends AsyncTask<Void, Void,String> {
             URI url = new URI(wsURL);
             // Create connection
             Log.d("linea", "continua url");
-
             HttpURLConnection myConnection = (HttpURLConnection) url.toURL().openConnection();
             Log.d("linea", "abre conexion");
-
-            // Establecer método. Por defecto GET.
             myConnection.setRequestMethod("GET");
             InputStream in = new BufferedInputStream(myConnection.getInputStream());
             Log.d("linea", "abre input");
@@ -85,33 +82,23 @@ class ConectandoHTTPComentario extends AsyncTask<Void, Void,String> {
         progressDialog.dismiss();
         Log.d("OnPostExecute", "Comienza el try");
         String line = "";
-        StringBuilder responseStrBuilder = new StringBuilder();
         try {
-            ///Error Sucede aqui salta a error cach json
             JSONObject jsonObject = new JSONObject(URLDecoder.decode(s, "UTF-8" ));
             JSONArray jsonArray = jsonObject.getJSONArray("coches");
-            // JSONObject jsonObject = new JSONObject(responseStrBuilder.toString());
             Log.d("OnPostExecute", "Primer objeto del try");
-            //JSONArray jsonArray = jsonObject.getJSONArray("coches");
-            Log.d("OnPostExecute", "Array del try");
             Log.d("OnPostExecute", jsonArray+"");
             for (int it = 0; it < jsonArray.length(); it++) {
                 Log.d("OnPostExecute", "Entro en for contador:"+it+"de"+jsonArray.length());
-                //fecha
                 String fecha = fechaModificador(jsonArray.getJSONObject(it).getString("Fecha"));
-
-                //nombreUsuario
                 String contenidoComentario = jsonArray.getJSONObject(it).getString("Contenido");
-                //contenido
                 String usuario = jsonArray.getJSONObject(it).getString("Usuario");
-
                 Log.d("OnPostExecute", "Registro Recibido:"+fecha+"-"+contenidoComentario+"-"+usuario);
                 EntidadComentariosDatos x = new EntidadComentariosDatos(fecha,usuario, contenidoComentario);
                 Log.d("OnPostExecute", "Objeto Recibido:"+x.getFecha()+"-"+ x.getNombreUsuario()+"-"+x.getContenidoComentario());
-                this.httpList.add(x);
+                httpList.add(x);
             }
-            httpAdapter = new AdaptadorComentarioDatos(this.httpList);
-            httpRecycler.setAdapter(this.httpAdapter);
+            httpAdapter = new AdaptadorComentarioDatos(httpList);
+            httpRecycler.setAdapter(httpAdapter);
         } catch (JSONException e) {
             Log.d("OnPostExecute",e.toString());
         } catch (UnsupportedEncodingException e) {
@@ -121,15 +108,10 @@ class ConectandoHTTPComentario extends AsyncTask<Void, Void,String> {
         }
     }
     public static String diferencia (Date inicio, Date fin){
-
         long diffInMs = fin.getTime() - inicio.getTime();
-
         long diffInSec = TimeUnit.MILLISECONDS.toSeconds(diffInMs);
-
         long hora = diffInSec/3600;
-
         int dias = (int) (hora/24);
-
         if (hora<=24){
             if(hora==0){
                 return "Hace escasos minutos";
@@ -148,8 +130,6 @@ class ConectandoHTTPComentario extends AsyncTask<Void, Void,String> {
         Date f = new Date();
         return diferencia(i,f);
     }
-
-
     private String inputStreamToString(InputStream inputStream) {
         String rLine = "";
         Log.d("InputStream","Comienzo metodo");
@@ -170,5 +150,4 @@ class ConectandoHTTPComentario extends AsyncTask<Void, Void,String> {
         }
         return answer.toString();
     }
-
 }
