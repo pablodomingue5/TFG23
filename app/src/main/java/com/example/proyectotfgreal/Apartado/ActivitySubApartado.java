@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.proyectotfgreal.Apartado.Adaptadores.AdaptadorSubapartado;
+import com.example.proyectotfgreal.Apartado.Entidades.EntidadSubApartado;
 import com.example.proyectotfgreal.R;
 import java.util.ArrayList;
 
@@ -26,7 +28,7 @@ public class ActivitySubApartado extends Activity {
         recycler= findViewById(R.id.ReciclerView1);
         recycler.setHasFixedSize(true);
         iManager = new LinearLayoutManager(this);
-        adapter = new AdaptadorSubapartado(this.httpList);
+        adapter = new AdaptadorSubapartado(httpList);
         recycler.setLayoutManager(iManager);
         recycler.setAdapter(adapter);
         nombresSubApartadoRecibido=getIntent().getExtras().getStringArrayList("SubApartadoNombre");

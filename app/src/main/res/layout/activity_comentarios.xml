@@ -8,8 +8,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ReciclerView"
-        android:layout_width="match_parent"
-        android:layout_height="581dp"
+        android:layout_width="411dp"
+        android:layout_height="561dp"
         android:background="#BDBDBD"
         android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,11 +30,11 @@
 
     <EditText
         android:id="@+id/inComentario2"
-        android:layout_width="206dp"
-        android:layout_height="52dp"
+        android:layout_width="212dp"
+        android:layout_height="40dp"
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="4dp"
         android:ems="10"
         android:hint="Comentario"
         android:inputType="textPersonName"

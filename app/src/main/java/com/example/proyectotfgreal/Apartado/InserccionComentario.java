@@ -20,7 +20,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
 
-class GetHTTPUsuario extends AsyncTask<Void,Void,String> {
+class InserccionComentario extends AsyncTask<Void,Void,String> {
     private String nombreUsuario;
     private String comentario;
     private String[] nombreParametros = {"fechaComentario","contenidoComentario","usuarioNumero","modeloSeleccionado"};
@@ -39,7 +39,7 @@ class GetHTTPUsuario extends AsyncTask<Void,Void,String> {
     }
 
 
-    public GetHTTPUsuario(String nombreUsuarioR, String comentarioR, String fechaActualR, String numeroModeloR, View viewR, Context contextR){
+    public InserccionComentario(String nombreUsuarioR, String comentarioR, String fechaActualR, String numeroModeloR, View viewR, Context contextR){
         nombreUsuario=nombreUsuarioR;
         view=viewR;
         comentario=comentarioR;
@@ -123,7 +123,7 @@ class GetHTTPUsuario extends AsyncTask<Void,Void,String> {
         try {
             Log.d("InterpretarDatos", s);
             JSONObject jsonObject = new JSONObject(URLDecoder.decode(s, "UTF-8"));
-            JSONArray jsonArray = jsonObject.getJSONArray("coches");
+            JSONArray jsonArray = jsonObject.getJSONArray("usuarios");
             Log.d("InterpretarDatos", "Primer objeto del try");
             idUsuarioObtenido= jsonArray.getJSONObject(0).getString("idUsuario");
             Log.d("EnvioSentencia","Usuario obtenido "+idUsuarioObtenido);
@@ -137,7 +137,7 @@ class GetHTTPUsuario extends AsyncTask<Void,Void,String> {
         String adevolver = null;
         try {
             JSONObject jsonObject = new JSONObject(URLDecoder.decode(s, "UTF-8" ));
-            JSONArray jsonArray = jsonObject.getJSONArray("coches");
+            JSONArray jsonArray = jsonObject.getJSONArray("usuarios");
             Log.d("recogiendoRegistros", "Primer objeto del try");
             for (int it = 0; it < jsonArray.length(); it++) {
                 String nombreModeloRecogido = jsonArray.getJSONObject(it).getString("idUsuario");

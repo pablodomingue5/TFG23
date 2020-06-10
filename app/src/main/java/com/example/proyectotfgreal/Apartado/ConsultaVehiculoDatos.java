@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.proyectotfgreal.Apartado.Entidades.EntidadDatos;
 import com.example.proyectotfgreal.R;
 import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
@@ -25,7 +26,7 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URLDecoder;
 
-public class ConectandoHTPDatos extends AsyncTask<Void, Void,String> {
+public class ConsultaVehiculoDatos extends AsyncTask<Void, Void,String> {
     private EntidadDatos x;
     public int numeroSeleccionado;
     private ImageView imgFoto;
@@ -33,10 +34,10 @@ public class ConectandoHTPDatos extends AsyncTask<Void, Void,String> {
     private Context contexto;
     private Handler handlerFoto;
 
-    ConectandoHTPDatos(ImageView imgFotoR, TextView inModeloR, TextView inMarcaR, TextView inAnoR, TextView inHPR,
-                       TextView inMotorR, TextView inCombustibleR, TextView inTraccionR,
-                       TextView inTransmisionR, TextView inMarchaR, TextView inMaxR, TextView inCCR,
-                       TextView inCuerpoR, TextView inVersionR, TextView lbVersionR, int numeroSeleccionadoR, Context contextoR) {
+    ConsultaVehiculoDatos(ImageView imgFotoR, TextView inModeloR, TextView inMarcaR, TextView inAnoR, TextView inHPR,
+                          TextView inMotorR, TextView inCombustibleR, TextView inTraccionR,
+                          TextView inTransmisionR, TextView inMarchaR, TextView inMaxR, TextView inCCR,
+                          TextView inCuerpoR, TextView inVersionR, TextView lbVersionR, int numeroSeleccionadoR, Context contextoR) {
         numeroSeleccionado=numeroSeleccionadoR;
         imgFoto = imgFotoR;
         inModelo = inModeloR;
@@ -104,7 +105,7 @@ public class ConectandoHTPDatos extends AsyncTask<Void, Void,String> {
         try {
             ///Error Sucede aqui salta a error cach json
             JSONObject jsonObject = new JSONObject(URLDecoder.decode(s, "UTF-8" ));
-            JSONArray jsonArray = jsonObject.getJSONArray("coches");
+            JSONArray jsonArray = jsonObject.getJSONArray("datos");
             Log.d("recogiendoRegistros", "Primer objeto del try");
             Log.d("recogiendoRegistros", "Array del try");
             String nombreModelo =  jsonArray.getJSONObject(0).getString("Nombre");

@@ -1,4 +1,4 @@
-package com.example.proyectotfgreal.Apartado;
+package com.example.proyectotfgreal.Apartado.Entidades;
 
 public class EntidadSubApartado {
    private String nombreSubApartado;

@@ -1,4 +1,4 @@
-package com.example.proyectotfgreal.Apartado;
+package com.example.proyectotfgreal.Apartado.Entidades;
 
 import android.util.Log;
 

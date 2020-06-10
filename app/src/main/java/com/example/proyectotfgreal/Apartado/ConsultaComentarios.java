@@ -7,6 +7,8 @@ import android.util.Log;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.proyectotfgreal.Apartado.Adaptadores.AdaptadorComentarioDatos;
+import com.example.proyectotfgreal.Apartado.Entidades.EntidadComentariosDatos;
 import com.example.proyectotfgreal.R;
 
 import org.json.JSONArray;
@@ -28,7 +30,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-class ConectandoHTTPComentario extends AsyncTask<Void, Void,String> {
+class ConsultaComentarios extends AsyncTask<Void, Void,String> {
 
     private List<EntidadComentariosDatos> httpList;
     private RecyclerView httpRecycler;
@@ -38,7 +40,7 @@ class ConectandoHTTPComentario extends AsyncTask<Void, Void,String> {
     String numeroApartado;
     String ip;
 
-    public ConectandoHTTPComentario(List<EntidadComentariosDatos> httpListR, RecyclerView httpRecyclerR, RecyclerView.Adapter httpAdapterR, String numeroRecibido, Context httpContextR) {
+    public ConsultaComentarios(List<EntidadComentariosDatos> httpListR, RecyclerView httpRecyclerR, RecyclerView.Adapter httpAdapterR, String numeroRecibido, Context httpContextR) {
         httpList = httpListR;
         httpRecycler = httpRecyclerR;
         httpAdapter = httpAdapterR;
@@ -84,7 +86,7 @@ class ConectandoHTTPComentario extends AsyncTask<Void, Void,String> {
         String line = "";
         try {
             JSONObject jsonObject = new JSONObject(URLDecoder.decode(s, "UTF-8" ));
-            JSONArray jsonArray = jsonObject.getJSONArray("coches");
+            JSONArray jsonArray = jsonObject.getJSONArray("comentarios");
             Log.d("OnPostExecute", "Primer objeto del try");
             Log.d("OnPostExecute", jsonArray+"");
             for (int it = 0; it < jsonArray.length(); it++) {

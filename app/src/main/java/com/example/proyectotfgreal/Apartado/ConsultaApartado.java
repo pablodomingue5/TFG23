@@ -5,6 +5,11 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.proyectotfgreal.Apartado.Adaptadores.Adaptador;
+import com.example.proyectotfgreal.Apartado.Entidades.Entidad;
+import com.example.proyectotfgreal.Apartado.Entidades.EntidadApartado;
+import com.example.proyectotfgreal.Apartado.Entidades.EntidadSubApartado;
 import com.example.proyectotfgreal.R;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,7 +25,7 @@ import java.net.URI;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 
-public class GetHTTPApartados  extends AsyncTask<Void, Void,String> {
+public class ConsultaApartado extends AsyncTask<Void, Void,String> {
     private ArrayList<Entidad> httpList= new ArrayList<>();
     private RecyclerView httpRecycler;
     private RecyclerView.Adapter httpAdapter;
@@ -28,7 +33,7 @@ public class GetHTTPApartados  extends AsyncTask<Void, Void,String> {
     private ProgressDialog progressDialog;
     private String ip;
     private ArrayList<EntidadApartado> arrayEntidadApartado = new ArrayList<>();
-    public GetHTTPApartados(ArrayList<Entidad> httpListR, RecyclerView httpRecyclerR, RecyclerView.Adapter httpAdapterR, Context httpContextR) {
+    public ConsultaApartado(ArrayList<Entidad> httpListR, RecyclerView httpRecyclerR, RecyclerView.Adapter httpAdapterR, Context httpContextR) {
         httpList = httpListR;
         httpRecycler = httpRecyclerR;
         httpAdapter = httpAdapterR;
@@ -38,7 +43,7 @@ public class GetHTTPApartados  extends AsyncTask<Void, Void,String> {
     protected String doInBackground(Void... voids) {
         String result = null;
         try {
-            String[] parametros = {"idPrueba"};
+            String[] parametros = {"idApartado"};
             ip = httpContext.getString(R.string.ip);
             String wsURL = "http://"+ip+"/TFG/adacc.php?" + parametros[0];
             Log.d("DoInBackground",wsURL);
@@ -64,7 +69,7 @@ public class GetHTTPApartados  extends AsyncTask<Void, Void,String> {
         ArrayList<EntidadApartado> registrosDefinitivos=new ArrayList<>();
         try {
             JSONObject jsonObject = new JSONObject(URLDecoder.decode(s, "UTF-8" ));
-            JSONArray jsonArray = jsonObject.getJSONArray("coches");
+            JSONArray jsonArray = jsonObject.getJSONArray("apartados");
             Log.d("recogiendoRegistros", "Primer objeto del try");
             Log.d("recogiendoRegistros", "Array del try");
             ArrayList<EntidadApartado> registroIniciales=new ArrayList<EntidadApartado> ();

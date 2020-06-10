@@ -1,4 +1,4 @@
-package com.example.proyectotfgreal.Apartado;
+package com.example.proyectotfgreal.Apartado.Adaptadores;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.proyectotfgreal.Apartado.Entidades.EntidadComentariosDatos;
 import com.example.proyectotfgreal.R;
 import java.util.List;
 

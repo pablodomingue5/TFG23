@@ -1,4 +1,4 @@
-package com.example.proyectotfgreal.Apartado;
+package com.example.proyectotfgreal.Apartado.Adaptadores;
 
 import android.content.Intent;
 import android.util.Log;
@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.proyectotfgreal.Apartado.ActivityDatos;
+import com.example.proyectotfgreal.Apartado.Entidades.Entidad;
 import com.example.proyectotfgreal.R;
 import com.squareup.picasso.Picasso;
 import java.util.List;

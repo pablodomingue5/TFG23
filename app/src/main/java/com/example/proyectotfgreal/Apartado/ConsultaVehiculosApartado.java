@@ -5,6 +5,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.proyectotfgreal.Apartado.Adaptadores.AdaptadorAPI;
+import com.example.proyectotfgreal.Apartado.Entidades.Entidad;
 import com.example.proyectotfgreal.R;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,10 +21,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
-import java.util.ArrayList;
 import java.util.List;
 
-public class GetHTTPApi extends AsyncTask<Void,Void,String> {
+public class ConsultaVehiculosApartado extends AsyncTask<Void,Void,String> {
     private List<Entidad> httpList;
     private RecyclerView httpRecycler;
     private RecyclerView.Adapter httpAdapter;
@@ -29,7 +31,7 @@ public class GetHTTPApi extends AsyncTask<Void,Void,String> {
     private ProgressDialog progressDialog;
     private String numeroApartado;
 
-    public GetHTTPApi(List<Entidad> httpListR, RecyclerView httpRecyclerR, RecyclerView.Adapter httpAdapterR, String numeroRecibido, Context httpContextR) {
+    public ConsultaVehiculosApartado(List<Entidad> httpListR, RecyclerView httpRecyclerR, RecyclerView.Adapter httpAdapterR, String numeroRecibido, Context httpContextR) {
         httpList = httpListR;
         httpRecycler = httpRecyclerR;
         httpAdapter = httpAdapterR;

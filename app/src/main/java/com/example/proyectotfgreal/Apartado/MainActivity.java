@@ -4,13 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Dialog;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
+import com.example.proyectotfgreal.Apartado.Entidades.Entidad;
 import com.example.proyectotfgreal.R;
 import java.util.ArrayList;
 
@@ -33,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void llamarHttpClass() {
-        GetHTTPApartados claes= new GetHTTPApartados(entidad,recycler, adapter,MainActivity.this);
+        ConsultaApartado claes= new ConsultaApartado(entidad,recycler, adapter,MainActivity.this);
         claes.execute();
     }
 

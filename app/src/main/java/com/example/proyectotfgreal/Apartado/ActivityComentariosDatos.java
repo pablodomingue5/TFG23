@@ -1,8 +1,6 @@
 package com.example.proyectotfgreal.Apartado;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +11,9 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.proyectotfgreal.Apartado.Adaptadores.AdaptadorComentarioDatos;
+import com.example.proyectotfgreal.Apartado.Entidades.EntidadComentariosDatos;
+import com.example.proyectotfgreal.Apartado.Entidades.MandandoCosa;
 import com.example.proyectotfgreal.R;
 
 import java.util.ArrayList;
@@ -52,7 +53,7 @@ public class ActivityComentariosDatos extends Activity {
                     Toast.makeText(getApplicationContext(),"Debes poner un usuario",Toast.LENGTH_SHORT).show();
                 }else {
                     MandandoCosa xs = new MandandoCosa(comentario1,numeroRegistro+"");
-                    GetHTTPUsuario get = new GetHTTPUsuario(usuario,xs.getComentario(), xs.getFechaActual(), xs.getNumeroModelo(),v,getApplicationContext());
+                    InserccionComentario get = new InserccionComentario(usuario,xs.getComentario(), xs.getFechaActual(), xs.getNumeroModelo(),v,getApplicationContext());
                     get.execute();
                 }
             }
@@ -60,7 +61,7 @@ public class ActivityComentariosDatos extends Activity {
         llamarHttpClass();
     }
     private void llamarHttpClass() {
-        ConectandoHTTPComentario claes= new ConectandoHTTPComentario(entidadComentario,recycler, adaptador, numeroRegistro+"",ActivityComentariosDatos.this);
+        ConsultaComentarios claes= new ConsultaComentarios(entidadComentario,recycler, adaptador, numeroRegistro+"",ActivityComentariosDatos.this);
         claes.execute();
     }
 }

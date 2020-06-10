@@ -1,4 +1,4 @@
-package com.example.proyectotfgreal.Apartado;
+package com.example.proyectotfgreal.Apartado.Entidades;
 
 public class EntidadComentariosDatos {
     String fecha;
@@ -15,7 +15,7 @@ public class EntidadComentariosDatos {
         return fecha;
     }
 
-    EntidadComentariosDatos(String fechaR, String nombreUsuarioR, String contenidoComentarioR){
+    public EntidadComentariosDatos(String fechaR, String nombreUsuarioR, String contenidoComentarioR){
         fecha=fechaR;
         nombreUsuario=nombreUsuarioR;
         contenidoComentario=contenidoComentarioR;

@@ -1,4 +1,4 @@
-package com.example.proyectotfgreal.Apartado;
+package com.example.proyectotfgreal.Apartado.Entidades;
 
 import android.util.Log;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class EntidadApartado {
     public String getImagen(){
         return imagen;
     }
-    EntidadApartado(String s, String i, String imagenR) {
+    public EntidadApartado(String s, String i, String imagenR) {
         Log.d("EntidadApartado","El nombre="+s);
         if (s.contains("-")) {
             String[] lols = s.split("-");

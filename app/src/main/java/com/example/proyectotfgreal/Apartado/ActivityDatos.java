@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.proyectotfgreal.R;
 
@@ -44,7 +43,6 @@ public class ActivityDatos  extends AppCompatActivity {
         btnComentarios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"Clicaste WeoN", Toast.LENGTH_SHORT).show();
                 Intent iconIntent = new Intent (view.getContext(), ActivityComentariosDatos.class);
                 iconIntent.putExtra("numeroIdentificadorModelo",numeroSeleccionado);
                 view.getContext().startActivity(iconIntent);
@@ -53,7 +51,7 @@ public class ActivityDatos  extends AppCompatActivity {
 
     }
     private void llamarHttpClass(int numeroSeleccionadoD) {
-        ConectandoHTPDatos claes= new ConectandoHTPDatos(imgFoto,inModelo,inMarca,inAno,inHP,inMotor,inCombustible,inTraccion,inTransmision,inMarcha,inMax,inCC,inCuerpo,inVersion,lbVersion, numeroSeleccionadoD, contexto);
+        ConsultaVehiculoDatos claes= new ConsultaVehiculoDatos(imgFoto,inModelo,inMarca,inAno,inHP,inMotor,inCombustible,inTraccion,inTransmision,inMarcha,inMax,inCC,inCuerpo,inVersion,lbVersion, numeroSeleccionadoD, contexto);
         claes.execute();
     }
 }
