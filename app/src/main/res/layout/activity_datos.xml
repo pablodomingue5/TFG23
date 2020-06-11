@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Apartado.ActivityDatos"
-    android:background="@color/colorAccent">
+    android:background="@color/colorDatosFondo">
 
     <TextView
         android:id="@+id/lbMarca"
@@ -17,6 +17,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="Marca"
+        android:textColor="@color/letrasGeneral"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/inMarca"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,6 +31,7 @@
         android:layout_marginLeft="22dp"
         android:layout_marginTop="20dp"
         android:text="Descapotable"
+        android:textColor="@color/letrasGeneral"
         app:layout_constraintStart_toEndOf="@+id/lbCuerpo"
         app:layout_constraintTop_toBottomOf="@+id/lbMax" />
 
@@ -41,6 +43,7 @@
         android:layout_marginLeft="22dp"
         android:layout_marginTop="20dp"
         android:text="1798"
+        android:textColor="@color/letrasGeneral"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/lbCC"
@@ -54,6 +57,7 @@
         android:layout_marginLeft="80dp"
         android:layout_marginTop="352dp"
         android:text="Año"
+        android:textColor="@color/letrasGeneral"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.013"
@@ -68,6 +72,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginTop="352dp"
         android:text="2008"
+        android:textColor="@color/letrasGeneral"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/lbAno"
@@ -81,6 +86,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="12dp"
         android:text="G"
+        android:textColor="@color/letrasGeneral"
         app:layout_constraintStart_toEndOf="@+id/lbCombustible"
         app:layout_constraintTop_toBottomOf="@+id/inMarca" />
 
@@ -92,6 +98,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="12dp"
         android:text="100"
+        android:textColor="@color/letrasGeneral"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.032"
         app:layout_constraintStart_toEndOf="@+id/lbHP"
@@ -105,6 +112,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="16dp"
         android:text="A"
+        android:textColor="@color/letrasGeneral"
         app:layout_constraintStart_toEndOf="@+id/lbTransmision"
         app:layout_constraintTop_toBottomOf="@+id/inMotor" />
 
@@ -116,6 +124,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="20dp"
         android:text="198"
+        android:textColor="@color/letrasGeneral"
         app:layout_constraintStart_toEndOf="@+id/lbMax"
         app:layout_constraintTop_toBottomOf="@+id/lbTransmision" />
 
@@ -127,6 +136,7 @@
         android:layout_marginLeft="52dp"
         android:layout_marginTop="12dp"
         android:text="Combustible"
+        android:textColor="@color/letrasGeneral"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbMarca" />
@@ -139,6 +149,7 @@
         android:layout_marginLeft="52dp"
         android:layout_marginTop="16dp"
         android:text="Tracción"
+        android:textColor="@color/letrasGeneral"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbMotor" />
@@ -151,6 +162,7 @@
         android:layout_marginLeft="52dp"
         android:layout_marginTop="21dp"
         android:text="Top Velocidad"
+        android:textColor="@color/letrasGeneral"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbTransmision" />
@@ -163,6 +175,7 @@
         android:layout_marginLeft="28dp"
         android:layout_marginTop="20dp"
         android:text="RC 1.8"
+        android:textColor="@color/letrasGeneral"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/lbVersion"
@@ -176,6 +189,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="20dp"
         android:text="Version"
+        android:textColor="@color/letrasGeneral"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.043"
@@ -190,6 +204,7 @@
         android:layout_marginLeft="76dp"
         android:layout_marginTop="12dp"
         android:text="HP"
+        android:textColor="@color/letrasGeneral"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.006"
@@ -204,6 +219,7 @@
         android:layout_marginLeft="44dp"
         android:layout_marginTop="415dp"
         android:text="Mazda 1.8 L (L8-DE, L8-VE)"
+        android:textColor="@color/letrasGeneral"
         app:layout_constraintStart_toEndOf="@+id/lbMotor"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -215,6 +231,7 @@
         android:layout_marginLeft="56dp"
         android:layout_marginTop="20dp"
         android:text="Cuerpo"
+        android:textColor="@color/letrasGeneral"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbMax" />
@@ -227,6 +244,7 @@
         android:layout_marginLeft="52dp"
         android:layout_marginTop="12dp"
         android:text="Motor"
+        android:textColor="@color/letrasGeneral"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbCombustible" />
@@ -239,6 +257,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="16dp"
         android:text="Transmisión"
+        android:textColor="@color/letrasGeneral"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/inTraccion"
         app:layout_constraintTop_toBottomOf="@+id/inMotor" />
@@ -251,6 +270,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="352dp"
         android:text="Mazda"
+        android:textColor="@color/letrasGeneral"
         app:layout_constraintStart_toEndOf="@+id/lbMarca"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -262,6 +282,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="16dp"
         android:text="5"
+        android:textColor="@color/letrasGeneral"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/lbMarcha"
@@ -273,6 +294,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Marchas"
+        android:textColor="@color/letrasGeneral"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.23"
@@ -287,6 +309,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:text="-d"
+        android:textColor="@color/letrasGeneral"
         app:layout_constraintStart_toEndOf="@+id/lbTraccion"
         app:layout_constraintTop_toBottomOf="@+id/lbMotor" />
 
@@ -298,6 +321,7 @@
         android:layout_marginLeft="48dp"
         android:layout_marginTop="20dp"
         android:text="Cilindrada"
+        android:textColor="@color/letrasGeneral"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -333,6 +357,7 @@
         android:gravity="center_horizontal"
         android:text="TextView"
         android:textAlignment="center"
+        android:textColor="@color/letrasGeneral"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"

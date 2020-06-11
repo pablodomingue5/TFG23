@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#CAC4B0</color>
-    <color name="colorFondoApartadosVehiculos">#FDFDFD</color>
-    <color name="colorCardViewFondo">#DAF3F0</color>
-    <color name="colorCardViewLetras"></color>
-    <color name="colorComentariosFondo">#EAE6CA</color>
-    <color name="colorCardViewComentariosFondo">#DAF3F0</color>
-    <color name="colorCardViewComentariosLetras"></color>
-    <color name="colorFondoComentarios">#FDFDFD</color>
+    <color name="colorPrimary">#367681</color>
+    <color name="colorPrimaryDark">#367681</color>
+    <color name="letrasGeneral">#FFFFFF</color>
+    <color name="colorAccent">#DBF8F1</color>
+    <color name="colorDatosFondo">#367681</color>
+    <color name="colorFondoApartadosVehiculos">#DBF8F1</color>
+    <color name="colorCardViewFondo">#7BB6B4</color>
+    <color name="colorCardViewLetras">#FFFFFF</color>
+    <color name="colorComentariosFondo">#DBF8F1</color>
+    <color name="colorCardViewComentariosFondo">#6B9CB3</color>
+    <color name="colorCardViewComentariosLetras">#FFFFFF</color>
+    <color name="colorFondoComentarios">#DBF8F1</color>
 
 </resources>

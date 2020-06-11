@@ -2,6 +2,7 @@ package com.example.proyectotfgreal.Apartado.Adaptadores;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyectotfgreal.Apartado.ActivityAPI;
@@ -62,6 +64,8 @@ public class AdaptadorSubapartado extends RecyclerView.Adapter<AdaptadorSubapart
         Picasso.with(viewHolder.imgFoto.getContext()).load(items.get(i).getImagenSubApartado())
                 .resize(370,230).into(viewHolder.imgFoto);
         viewHolder.lblModelo.setText(items.get(i).getNombreSubApartado());
+        Typeface font = Typeface.create(ResourcesCompat.getFont(viewHolder.cardView.getContext(),R.font.baloo),Typeface.NORMAL);
+        viewHolder.lblModelo.setTypeface(font);
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

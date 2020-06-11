@@ -38,7 +38,6 @@ public class ActivityDatos  extends AppCompatActivity {
         lbVersion = findViewById(R.id.lbVersion);
         btnComentarios = findViewById(R.id.btn_mensaje);
         contexto = getApplicationContext();
-        setTitle("Coche especifico");
         llamarHttpClass(numeroSeleccionado);
         btnComentarios.setOnClickListener(new View.OnClickListener() {
             @Override

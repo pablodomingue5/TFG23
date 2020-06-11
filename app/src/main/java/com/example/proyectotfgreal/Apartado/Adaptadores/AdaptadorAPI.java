@@ -1,6 +1,7 @@
 package com.example.proyectotfgreal.Apartado.Adaptadores;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyectotfgreal.Apartado.ActivityDatos;
@@ -64,6 +66,8 @@ public class AdaptadorAPI extends RecyclerView.Adapter<AdaptadorAPI.PersonViewHo
         Picasso.with(viewHolder.imgFoto.getContext())
                 .load(imagenSeleccionada).resize(370,230).into(viewHolder.imgFoto);
         viewHolder.lblModelo.setText(nombreSeleccionado);
+        Typeface font = Typeface.create(ResourcesCompat.getFont(viewHolder.cardView.getContext(),R.font.germania_one),Typeface.NORMAL);
+        viewHolder.lblModelo.setTypeface(font);
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
