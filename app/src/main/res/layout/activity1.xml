@@ -5,11 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Apartado.ActivitySubApartado">
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ReciclerView1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorFondoApartadosVehiculos"
-        android:padding="10dp" />
+        style="style/EstiloSubcosa"/>
 </RelativeLayout>

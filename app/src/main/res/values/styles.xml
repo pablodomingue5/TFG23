@@ -7,5 +7,87 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="EstiloCardView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignWithParentIfMissing">false</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+    <style name="EstiloCardViewLetras">
+        <item name="android:layout_width">117dp</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:fontFamily">@font/baloo</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:textColor">@color/colorCardViewLetras</item>
+    </style>
+    <style name="EstiloDatosTextoL">
+        <item name="android:textColor">@color/letrasGeneral</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="EstiloDatosTexto">
+        <item name="android:textColor">@color/letrasGeneral</item>
+    </style>
+    <style name="ApartadosMain">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/colorFondoApartadosVehiculos</item>
+        <item name="android:padding">10dp</item>
+    </style>
+    <style name="EstiloSubcosa">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/colorFondoApartadosVehiculos</item>
+        <item name="android:padding">10dp</item>
+    </style>
 
+    <style name="BotonComentario">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">40dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:text">Enviar</item>
+        <item name="android:textColor">@color/letrasGeneral</item>
+    </style>
+    <style name="ComentariosLista">
+        <item name="android:layout_width">364dp</item>
+        <item name="android:layout_height">555dp</item>
+        <item name="android:background">@color/colorComentariosFondo</item>
+        <item name="android:padding">10dp</item>
+    </style>
+    <style name="fondoLayoutComentarios">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/colorComentariosFondo</item>
+    </style>
+    <style name="inputComentarios">
+        <item name="android:background">@color/colorCardViewLetras</item>
+        <item name="android:ems">10</item>
+        <item name="android:inputType">textPersonName</item>
+        <item name="android:layout_width">220dp</item>
+        <item name="android:layout_height">30dp</item>
+    </style>
+    <style name="nombreUsuarioCardView">
+        <item name="android:fontFamily">serif</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:textColor">@color/colorCardViewComentariosLetras</item>
+        <item name="android:layout_width">110dp</item>
+        <item name="android:layout_height">41dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+    </style>
+    <style name="comentarioCardView">
+        <item name="android:fontFamily">serif</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:textColor">@color/colorCardViewComentariosLetras</item>
+        <item name="android:layout_width">182dp</item>
+        <item name="android:layout_height">71dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginRight">85dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+    </style>
+    <style name="fechaCardView">
+        <item name="android:fontFamily">serif</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:textColor">@color/colorCardViewComentariosLetras</item>
+    </style>
 </resources>

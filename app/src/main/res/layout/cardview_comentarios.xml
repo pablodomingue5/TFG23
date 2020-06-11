@@ -18,32 +18,22 @@
 
         <TextView
             android:id="@+id/txtComentario"
-            android:layout_width="182dp"
-            android:layout_height="71dp"
-            android:layout_marginTop="15dp"
             android:layout_marginEnd="85dp"
-            android:layout_marginRight="85dp"
-            android:layout_marginBottom="15dp"
-            android:fontFamily="serif"
-            android:paddingTop="5dp"
-            android:textColor="@color/colorCardViewComentariosLetras"
+            style="comentarioCardView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginRight="85dp" />
 
         <TextView
             android:id="@+id/txtNombre"
-            android:layout_width="110dp"
-            android:layout_height="41dp"
             android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:fontFamily="serif"
-            android:paddingTop="5dp"
-            android:textColor="@color/colorCardViewComentariosLetras"
+            style="@style/nombreUsuarioCardView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.054" />
+            app:layout_constraintVertical_bias="0.054"
+            android:layout_marginLeft="10dp" />
 
         <TextView
             android:id="@+id/txtFecha"
@@ -51,9 +41,7 @@
             android:layout_height="41dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
-            android:fontFamily="serif"
-            android:paddingTop="5dp"
-            android:textColor="@color/colorCardViewComentariosLetras"
+            style="@style/fechaCardView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

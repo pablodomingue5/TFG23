@@ -3,19 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardview1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignWithParentIfMissing="false"
-    android:layout_margin="5dp"
     app:cardBackgroundColor="@color/colorCardViewFondo"
-    app:cardCornerRadius="4dp">
-
+    app:cardCornerRadius="4dp"
+    style="@style/EstiloCardView">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout2"
         android:layout_width="392dp"
         android:layout_height="96dp"
         android:layout_margin="5dp">
-
         <ImageView
             android:id="@+id/imgFoto1"
             android:layout_width="177dp"
@@ -26,17 +21,11 @@
 
         <TextView
             android:id="@+id/txtComentario"
-            android:layout_width="117dp"
-            android:layout_height="44dp"
-            android:fontFamily="@font/baloo"
-            android:paddingTop="5dp"
-            android:textColor="@color/colorCardViewLetras"
+            style="@style/EstiloCardViewLetras"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.142"
             app:layout_constraintStart_toEndOf="@+id/imgFoto1"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.cardview.widget.CardView>
