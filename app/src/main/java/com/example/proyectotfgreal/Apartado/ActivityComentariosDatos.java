@@ -18,6 +18,8 @@ import com.example.proyectotfgreal.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ActivityComentariosDatos extends Activity {
     int numeroRegistro;
@@ -55,6 +57,13 @@ public class ActivityComentariosDatos extends Activity {
                     MandandoCosa xs = new MandandoCosa(comentario1,numeroRegistro+"");
                     InserccionComentario get = new InserccionComentario(usuario,xs.getComentario(), xs.getFechaActual(), xs.getNumeroModelo(),v,getApplicationContext());
                     get.execute();
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            finish();
+                        }
+                    }, 1500);
+
                 }
             }
         });

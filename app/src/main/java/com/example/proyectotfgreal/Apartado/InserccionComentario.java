@@ -33,9 +33,11 @@ class InserccionComentario extends AsyncTask<Void,Void,String> {
         super.onPostExecute(s);
         Log.d("EnvioSentencia",s);
         Toast.makeText(view.getContext(),"Se metio el comentario wey",Toast.LENGTH_LONG).show();
+
         Intent iconIntent = new Intent (view.getContext(), ActivityComentariosDatos.class);
         iconIntent.putExtra("numeroIdentificadorModelo",Integer.parseInt(s));
         view.getContext().startActivity(iconIntent);
+
     }
 
 
